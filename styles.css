@@ -1,0 +1,588 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Helps on iOS to prevent text resizing */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+}
+
+/* Enable smooth scrolling for anchors */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar (Desktop) */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-desktop-image {
+  width: 160px;
+  height: auto;
+}
+
+.spotify-container-desktop {
+  margin-left: 20px;
+}
+
+.spotify-embed iframe {
+  max-width: 300px;
+  width: 100%;
+  height: 80px;
+  border-radius: 12px;
+}
+
+/* Navigation Links (Desktop) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  margin-left: auto;
+}
+
+/* Hide by default (on desktop and before .show) */
+.mobile-nav-image,
+.nav-video-bg {
+  display: none;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: #444;
+}
+
+.close-nav-btn {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  color: #fff;
+  text-align: center;
+  padding: 0;
+  margin-top: 80px; /* Enough space so the fixed navbar doesn't cover hero on desktop */
+  background-color: #000;
+}
+
+.hero-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Album Info Section */
+.album-info {
+  text-align: center;
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  text-align: center;
+  color: #fff;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin: 20px 0;
+}
+
+.hero-button {
+  background: #f90;
+  color: #000;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.hero-button:hover {
+  background: #c70;
+}
+
+.hero-album {
+  margin-top: 20px;
+}
+
+.hero-album-cover {
+  width: 700px;
+  max-width: 80vw;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Upcoming Shows */
+.shows-section {
+  background-color: #f5f5f5;
+  padding: 2rem;
+}
+
+.shows-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.shows-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.shows-list li {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.shows-list li strong {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.shows-list li a {
+  background: #222;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.shows-list li a:hover {
+  background: #444;
+}
+
+/* Sections */
+.section {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.releases {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.release-item {
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 200px;
+  text-align: center;
+}
+
+.release-item img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.release-item a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #f90;
+  font-weight: bold;
+}
+
+.videos-section {
+  background: #eee;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  /* 16:9 aspect ratio: (9/16)*100% = 56.25% */
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-section {
+  background: #f5f5f5;
+}
+
+.contact-section p {
+  margin-bottom: 20px;
+}
+
+.contact-section a {
+  color: #f90;
+  text-decoration: none;
+}
+
+.socials {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+socials a {
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+socials a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Alpha Video Button (Desktop Hidden, Mobile Shown Later) */
+.alpha-video-button {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* MOBILE MEDIA QUERIES */
+@media screen and (max-width: 968px) {
+  /* Navbar pinned to bottom on mobile */
+  .navbar {
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .spotify-container-desktop {
+    display: none;
+  }
+
+  /* Mobile nav (drawer) with fade-in + slide-in */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -70%;
+    width: 25%;
+    background-color: #000;
+    padding: 60px 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    align-items: center;
+    gap: 30px;
+    z-index: 999;
+    overflow: hidden;
+
+    /* Fade + Slide transitions */
+    visibility: hidden;
+    opacity: 0;
+    transition: right 0.3s ease, opacity 0.3s ease;
+  }
+
+  .nav-links.show {
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-video-bg,
+  .mobile-nav-image,
+  .nav-links a,
+  .close-nav-btn {
+    display: none;
+  }
+
+  .nav-links.show .nav-video-bg,
+  .nav-links.show .mobile-nav-image,
+  .nav-links.show a,
+  .nav-links.show .close-nav-btn {
+    display: block;
+  }
+
+  .nav-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .nav-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* 50% opacity for background video */
+  }
+
+  .mobile-nav-image {
+    text-align: center;
+    z-index: 1;
+  }
+
+  .mobile-nav-image img {
+    max-width: 100px;
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .nav-links a,
+  .close-nav-btn {
+    position: relative;
+    z-index: 1;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a:hover {
+    background: #555;
+  }
+
+  .hamburger {
+    display: block;
+    position: fixed;
+    bottom: 17px;
+    left: 80%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  @supports (padding: env(safe-area-inset-top)) {
+    .hamburger {
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+
+  /* Make hero start at the very top on mobile */
+  .hero {
+    margin-top: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  .page-title {
+    font-size: 0.5rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  /* Center the shows list items on mobile */
+  .shows-list li {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .shows-list li strong {
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+  }
+  .shows-list li a {
+    margin-top: 0.5rem;
+  }
+
+  /*
+      Slide/Fade for Spotify bottom section
+      Instead of display: none, we start off-screen and fade in
+    */
+  .spotify-mobile-bottom-section {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: -120px; /* Start below the screen */
+    background: #000000;
+    padding: 10px;
+    z-index: 2;
+
+    /* Hidden at start */
+    opacity: 0;
+    visibility: hidden;
+    transition: bottom 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* Show state: slides up & fades in */
+  .spotify-mobile-bottom-section.show {
+    bottom: 100px; /* Slide up to original position */
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Alpha Video Button on mobile */
+  .alpha-video-button {
+    display: none;
+    position: fixed;
+    bottom: 120px;
+    right: 1px;
+    background: #000000;
+    border: 7px solid #000000;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  #alpha-video {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Show alpha-video-button only on mobile */
+  @media screen and (max-width: 968px) {
+    .alpha-video-button {
+      display: block;
+    }
+  }
+
+  /* Prevent content from going under the navbar on mobile */
+  body {
+    padding-bottom: 160px;
+  }
+}
+
+/* 
+    ======== HIDE THE BOTTOM SPOTIFY PLAYER ON DESKTOP ========
+    This ensures only the top-right nav player shows on desktop
+  */
+@media screen and (min-width: 969px) {
+  .spotify-mobile-bottom-section {
+    display: none !important;
+  }
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 540px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
