@@ -119,46 +119,70 @@
     </section>
 
     <!-- Contact Section -->
-    <form action="https://formsubmit.co/el/xatasi" method="POST" enctype="multipart/form-data">
-      <!-- User's Email Address -->
-      <input type="email" name="email" placeholder="Your Email Address" required>
-  
-      <!-- User's Message -->
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-  
-      <!-- File Upload (Optional) -->
-      <input type="file" name="attachment" accept="image/png, image/jpeg">
-  
-      <!-- Custom Subject Line -->
-      <input type="hidden" name="_subject" value="New Form Submission!">
-  
-      <!-- Redirect After Submission -->
-      <input type="hidden" name="_next" value="https://yourdomain.co/thanks.html">
-  
-      <!-- CC Field -->
-      <input type="hidden" name="_cc" value="another@email.com,yetanother@email.com">
-  
-      <!-- Blacklist Keywords -->
-      <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase">
-  
-      <!-- Disable reCAPTCHA (not recommended) -->
-      <input type="hidden" name="_captcha" value="false">
-  
-      <!-- Honeypot Field to Prevent Spam -->
-      <input type="text" name="_honey" style="display:none">
-  
-      <!-- Autoresponse Message -->
-      <input type="hidden" name="_autoresponse" value="Thank you for reaching out! We will get back to you shortly.">
-  
-      <!-- Template Selection -->
-      <input type="hidden" name="_template" value="table">
-  
-      <!-- Webhook (Optional) -->
-      <input type="hidden" name="_webhook" value="https://yourdomain.co/your-webhook">
-  
-      <!-- Submit Button -->
-      <button type="submit">Submit</button>
-  </form>
+    <body>
+      <div class="container">
+          <div class="form">
+              <div class="col-md-8 offset-md-2">
+                  <h1>Send Message</h1>
+                  <div class="errors">
+                                  </div>
+                  <form method="POST" id="target" action="/el/xatasi">
+                      <input type="hidden" name="_token" value="eYHSEv7ZYAOTA4Zx7EA4ai4VDZ1Xe40lksBBhcq5">                <div class="form-group">
+                          <div class="form-row">
+                              <div class="col">
+                                  <label for="name">Full Name</label>
+                                  <input type="text" id="name" name="name" class="form-control" required="" value="">
+                              </div>
+                              <div class="col">
+                                  <label for="email">Email Address</label>
+                                  <input type="email" id="email" name="email" class="form-control" required="" value="">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="subject">Subject</label>
+                          <input type="text" id="subject" name="subject" class="form-control" required="" value="">
+                      </div>
+                      <div class="form-group">
+                          <label for="message">Message</label>
+                          <textarea id="message" class="form-control" name="message" rows="8" required=""></textarea>
+                      </div>
+                      <div class="form-group">
+                          <div class="input-group input-group-lg">
+                              <div id="captcha">
+                                  <div data-callback="submit" data-theme="dark" data-sitekey="6LdpKIMUAAAAAPH4XLcypBTMPsV7eTWZrznHCndM" class="g-recaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-gq5hav64k3h2" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LdpKIMUAAAAAPH4XLcypBTMPsV7eTWZrznHCndM&amp;co=aHR0cHM6Ly9mb3Jtc3VibWl0LmNvOjQ0Mw..&amp;hl=en&amp;v=p09oe8YIFfKgcnqQ9m9k4aiB&amp;theme=dark&amp;size=normal&amp;cb=ngkai6eghc2w"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                                  <script src="https://www.google.com/recaptcha/api.js?" async="" defer=""></script>
+      
+                              </div>
+                          </div>
+                      </div>
+                      <input type="hidden" value="" name="url">
+                      <button type="submit" class="btn btn-lg btn-dark btn-block">Send Message</button>
+                  </form>
+              </div>
+          </div>
+          <div class="row backlink">
+              <div class="col-md-8 offset-md-2 text-center">
+                  <p>You are using&nbsp; <a target="_blank" href="https://formsubmit.co/email-link/?utm_source=formsubmit.co&amp;utm_medium=email%20link&amp;utm_campaign=submission%20page">
+                          <img height="35px" src="https://formsubmit.co/image/logo.png" alt="FormSubmit logo"></a></p>
+              </div>
+          </div>
+      </div>
+      <script>
+          function submit() {
+              $("#target").unbind('submit').submit()
+          }
+      
+          $(document).ready(function () {
+              $('#target').on('submit', function (e) {
+                  e.preventDefault();
+                  $('#captcha').show();
+              });
+          });
+      </script>
+      
+      
+      <div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility linear 0.3s, opacity 0.3s linear; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="recaptcha challenge expires in two minutes" name="c-gq5hav64k3h2" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/bframe?hl=en&amp;v=p09oe8YIFfKgcnqQ9m9k4aiB&amp;k=6LdpKIMUAAAAAPH4XLcypBTMPsV7eTWZrznHCndM" style="width: 100%; height: 100%;"></iframe></div></div></body>
   
 
 
