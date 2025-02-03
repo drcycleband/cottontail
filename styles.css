@@ -28,8 +28,8 @@ html {
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background: #4589ff;
-  color: #fff;
+  background: #dfebff;
+  color: #3e5fcb;
   position: fixed;
   top: 0;
   width: 100%;
@@ -66,14 +66,14 @@ html {
 
 .nav-links li a {
   text-decoration: none;
-  color: #fff;
+  color: #3e5fcb;
   padding: 10px;
   font-size: 1rem;
   transition: background 0.3s ease;
 }
 
 .nav-links a:hover {
-  background-color: #444;
+  background-color: #ffffff;
 }
 
 .close-nav-btn {
@@ -117,7 +117,7 @@ html {
 
 .hero-content h1 {
   font-size: 1.5rem;
-  margin-top: 20px;
+  margin-top: 600px;
   text-align: center;
 }
 
@@ -142,9 +142,9 @@ html {
 }
 
 .hero-button {
-  background: #f90;
+  background: rgb(255, 188, 215);
   color: #000;
-  padding: 10px 20px;
+  padding: 20px 40px;
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
@@ -153,7 +153,7 @@ html {
 }
 
 .hero-button:hover {
-  background: #c70;
+  background: rgb(205, 106, 146);
 }
 
 .hero-album {
@@ -304,23 +304,10 @@ socials a:hover {
 }
 
 .footer {
-  background: #000;
-  color: #fff;
+  background: #dfebff;
+  color: #3e5fcb;
   text-align: center;
   padding: 20px;
-}
-
-/* Alpha Video Button (Desktop Hidden, Mobile Shown Later) */
-.alpha-video-button {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 1001;
 }
 
 /* MOBILE MEDIA QUERIES */
