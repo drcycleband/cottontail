@@ -111,7 +111,7 @@ body {
   font-weight: bold;
   border-radius: 5px;
   display: inline-block;
-  margin-top: 300px; /* Adjust as needed to position the button */
+  margin-top: 550px; /* Adjust as needed to position the button */
 }
 
 .hero-button:hover {
