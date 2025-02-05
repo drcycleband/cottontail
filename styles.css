@@ -3,10 +3,6 @@
   box-sizing: border-box;
 }
 
-
-
-
-
 html,
 body {
   margin: 0;
@@ -52,7 +48,7 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: #3e5fcb;
+  color: #2d3867;
   padding: 10px;
   font-size: 1rem;
   transition: background 0.3s ease;
@@ -62,8 +58,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Hidden by default on desktop */
-.nav-video-bg,
+/* Hiding these by default on desktop */
 .mobile-nav-image {
   display: none;
 }
@@ -154,7 +149,7 @@ body {
     bottom: 0;
     right: -70%;
     width: 25%;
-    background-color: #000;
+    background-color: #dfebff;
     padding: 60px 20px;
     gap: 30px;
     z-index: 999;
@@ -170,35 +165,16 @@ body {
     opacity: 1;
   }
 
-  /* Appear only when .nav-links has .show */
-  .nav-links.show .nav-video-bg,
+  /* Show the mobile logo when the nav is open */
   .nav-links.show .mobile-nav-image,
   .nav-links.show a {
     display: block;
-  }
-
-  .nav-video-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .nav-video-bg video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.5;
   }
 
   .mobile-nav-image {
     text-align: center;
     z-index: 1;
   }
-
   .mobile-nav-image img {
     max-width: 100px;
     width: 80%;
@@ -209,7 +185,7 @@ body {
   .nav-links a {
     position: relative;
     z-index: 1;
-    background: #444;
+    background: #4384f4;
     color: #fff;
     font-size: 1.2rem;
     padding: 10px 15px;
@@ -220,17 +196,18 @@ body {
   }
 
   .nav-links a:hover {
-    background: #555;
+    background: #dfebff;
+    color: #000;
   }
 
   .hamburger {
     display: block;
     position: fixed;
-    bottom: 17px;
-    left: 80%;
+    bottom: 10px;
+    left: 90%;
     transform: translateX(-50%);
-    font-size: 4rem;
-    color: #fff;
+    font-size: 2rem;
+    color: #526d8a;
     z-index: 1001;
   }
 
@@ -238,13 +215,12 @@ body {
   .hero {
     margin-top: 0;
   }
-
   .hero-button {
     margin-top: 20px;
   }
 
   /* Prevent content from going under navbar on mobile */
   body {
-    padding-bottom: 160px;
+    padding-bottom: 40px;
   }
 }
