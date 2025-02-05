@@ -3,33 +3,27 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
 
-/* Helps on iOS to prevent text resizing */
+
+
+
 html,
 body {
   margin: 0;
   padding: 0;
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: none;
-}
-
-/* Enable smooth scrolling for anchors */
-html {
   scroll-behavior: smooth;
+  font-family: Arial, sans-serif;
 }
 
-/* Navbar (Desktop) */
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
   padding: 10px 20px;
   background: #dfebff;
-  color: #3e5fcb;
+  color: #1d64a9;
   position: fixed;
   top: 0;
   width: 100%;
@@ -46,9 +40,7 @@ html {
   height: auto;
 }
 
-
-
-/* Navigation Links (Desktop) */
+/* Navigation Links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -56,12 +48,6 @@ html {
   list-style: none;
   margin: 0;
   margin-left: auto;
-}
-
-/* Hide by default (on desktop and before .show) */
-.mobile-nav-image,
-.nav-video-bg {
-  display: none;
 }
 
 .nav-links li a {
@@ -76,10 +62,13 @@ html {
   background-color: #ffffff;
 }
 
-.close-nav-btn {
+/* Hidden by default on desktop */
+.nav-video-bg,
+.mobile-nav-image {
   display: none;
 }
 
+/* Hamburger (mobile) */
 .hamburger {
   display: none;
   font-size: 1.5rem;
@@ -93,11 +82,10 @@ html {
 /* Hero Section */
 .hero {
   position: relative;
-  color: #fff;
   text-align: center;
-  padding: 0;
-  margin-top: 0px; /* Enough space so the fixed navbar doesn't cover hero on desktop */
+  margin-top: 55px; /* space for fixed navbar */
   background-color: #000;
+  color: #fff;
 }
 
 .hero-image {
@@ -112,35 +100,9 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
 }
 
-.hero-content h1 {
-  font-size: 1.5rem;
-  margin-top: 600px;
-  text-align: center;
-}
-
-/* Album Info Section */
-.album-info {
-  text-align: center;
-  padding: 20px;
-  background-color: #000;
-  color: #ffffff;
-}
-
-.page-title {
-  font-size: 1rem;
-  margin: 0 0 20px 0;
-  text-align: center;
-  color: #fff;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  margin: 20px 0;
-}
-
+/* Hero Button */
 .hero-button {
   background: rgb(255, 188, 215);
   color: #000;
@@ -149,73 +111,14 @@ html {
   font-weight: bold;
   border-radius: 5px;
   display: inline-block;
-  margin-bottom: 20px;
+  margin-top: 300px; /* Adjust as needed to position the button */
 }
 
 .hero-button:hover {
   background: rgb(205, 106, 146);
 }
 
-.hero-album {
-  margin-top: 20px;
-}
-
-.hero-album-cover {
-  width: 700px;
-  max-width: 80vw;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* Upcoming Shows */
-.shows-section {
-  background-color: hsl(211, 100%, 85%);
-  padding: 2rem;
-}
-
-.shows-section h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.shows-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-}
-
-.shows-list li {
-  background-color: #fff;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.shows-list li strong {
-  margin-right: 1rem;
-  font-weight: bold;
-}
-
-.shows-list li a {
-  background: #222;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 3px;
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.shows-list li a:hover {
-  background: #444;
-}
-
-/* Sections */
+/* Generic Section Wrapper */
 .section {
   padding: 60px 20px;
   max-width: 1200px;
@@ -223,86 +126,7 @@ html {
   text-align: center;
 }
 
-.releases {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.release-item {
-  background: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  max-width: 200px;
-  text-align: center;
-}
-
-.release-item img {
-  max-width: 100%;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-.release-item a {
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  color: #f90;
-  font-weight: bold;
-}
-
-.videos-section {
-  background: #eee;
-}
-
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  /* 16:9 aspect ratio: (9/16)*100% = 56.25% */
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-}
-
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.contact-section {
-  background: #f5f5f5;
-}
-
-.contact-section p {
-  margin-bottom: 20px;
-}
-
-.contact-section a {
-  color: #f90;
-  text-decoration: none;
-}
-
-.socials {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-socials a {
-  color: #222;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-socials a:hover {
-  text-decoration: underline;
-}
-
+/* Footer */
 .footer {
   background: #dfebff;
   color: #3e5fcb;
@@ -310,9 +134,9 @@ socials a:hover {
   padding: 20px;
 }
 
-/* MOBILE MEDIA QUERIES */
+/* ========= MOBILE MEDIA QUERIES ========= */
 @media screen and (max-width: 968px) {
-  /* Navbar pinned to bottom on mobile */
+  /* Move navbar to bottom on mobile */
   .navbar {
     justify-content: space-between;
     position: fixed;
@@ -322,13 +146,8 @@ socials a:hover {
     padding: 10px;
   }
 
-  .spotify-container-desktop {
-    display: none;
-  }
-
-  /* Mobile nav (drawer) with fade-in + slide-in */
+  /* Mobile nav (drawer) */
   .nav-links {
-    display: flex;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -337,13 +156,9 @@ socials a:hover {
     width: 25%;
     background-color: #000;
     padding: 60px 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-    align-items: center;
     gap: 30px;
     z-index: 999;
     overflow: hidden;
-
-    /* Fade + Slide transitions */
     visibility: hidden;
     opacity: 0;
     transition: right 0.3s ease, opacity 0.3s ease;
@@ -355,17 +170,10 @@ socials a:hover {
     opacity: 1;
   }
 
-  .nav-video-bg,
-  .mobile-nav-image,
-  .nav-links a,
-  .close-nav-btn {
-    display: none;
-  }
-
+  /* Appear only when .nav-links has .show */
   .nav-links.show .nav-video-bg,
   .nav-links.show .mobile-nav-image,
-  .nav-links.show a,
-  .nav-links.show .close-nav-btn {
+  .nav-links.show a {
     display: block;
   }
 
@@ -383,7 +191,7 @@ socials a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.5; /* 50% opacity for background video */
+    opacity: 0.5;
   }
 
   .mobile-nav-image {
@@ -398,18 +206,17 @@ socials a:hover {
     border-radius: 10px;
   }
 
-  .nav-links a,
-  .close-nav-btn {
+  .nav-links a {
     position: relative;
     z-index: 1;
     background: #444;
     color: #fff;
-    text-decoration: none;
     font-size: 1.2rem;
     padding: 10px 15px;
     border-radius: 5px;
     width: 100%;
     text-align: center;
+    text-decoration: none;
   }
 
   .nav-links a:hover {
@@ -423,144 +230,21 @@ socials a:hover {
     left: 80%;
     transform: translateX(-50%);
     font-size: 4rem;
-    background: none;
-    border: none;
     color: #fff;
-    cursor: pointer;
     z-index: 1001;
   }
 
-  @supports (padding: env(safe-area-inset-top)) {
-    .hamburger {
-      padding-right: env(safe-area-inset-right);
-      padding-bottom: env(safe-area-inset-bottom);
-    }
-  }
-
-  /* Make hero start at the very top on mobile */
+  /* Make hero fill the screen from the top on mobile */
   .hero {
     margin-top: 0;
   }
 
-  .hero-content h1 {
-    font-size: 2rem;
-    margin: 0;
+  .hero-button {
+    margin-top: 20px;
   }
 
-  .page-title {
-    font-size: 0.5rem;
-    margin: 0 0 20px 0;
-    text-align: center;
-    color: #fff;
-  }
-
-  /* Center the shows list items on mobile */
-  .shows-list li {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .shows-list li strong {
-    margin-bottom: 0.5rem;
-    margin-right: 0;
-  }
-  .shows-list li a {
-    margin-top: 0.5rem;
-  }
-
-  /*
-      Slide/Fade for Spotify bottom section
-      Instead of display: none, we start off-screen and fade in
-    */
-  .spotify-mobile-bottom-section {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: -120px; /* Start below the screen */
-    background: #000000;
-    padding: 10px;
-    z-index: 2;
-
-    /* Hidden at start */
-    opacity: 0;
-    visibility: hidden;
-    transition: bottom 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-  }
-
-  /* Show state: slides up & fades in */
-  .spotify-mobile-bottom-section.show {
-    bottom: 100px; /* Slide up to original position */
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Alpha Video Button on mobile */
-  .alpha-video-button {
-    display: none;
-    position: fixed;
-    bottom: 120px;
-    right: 1px;
-    background: #000000;
-    border: 7px solid #000000;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1001;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  }
-
-  #alpha-video {
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  /* Show alpha-video-button only on mobile */
-  @media screen and (max-width: 968px) {
-    .alpha-video-button {
-      display: block;
-    }
-  }
-
-  /* Prevent content from going under the navbar on mobile */
+  /* Prevent content from going under navbar on mobile */
   body {
     padding-bottom: 160px;
   }
-}
-
-/* 
-    ======== HIDE THE BOTTOM SPOTIFY PLAYER ON DESKTOP ========
-    This ensures only the top-right nav player shows on desktop
-  */
-@media screen and (min-width: 969px) {
-  .spotify-mobile-bottom-section {
-    display: none !important;
-  }
-}
-
-/* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.modal-content {
-  background: #fff;
-  color: #000;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 540px;
-  width: 90%;
-  text-align: center;
-  position: relative;
 }
