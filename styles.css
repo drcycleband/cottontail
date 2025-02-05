@@ -58,7 +58,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Hiding these by default on desktop */
+/* Hide mobile logo by default on desktop */
 .mobile-nav-image {
   display: none;
 }
@@ -90,13 +90,6 @@ body {
   margin: 0 auto;
 }
 
-.hero-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 /* Hero Button */
 .hero-button {
   background: rgb(255, 188, 215);
@@ -106,7 +99,7 @@ body {
   font-weight: bold;
   border-radius: 5px;
   display: inline-block;
-  margin-top: 550px; /* Adjust as needed to position the button */
+  margin-top: 550px; /* Adjust if needed */
 }
 
 .hero-button:hover {
@@ -129,9 +122,9 @@ body {
   padding: 20px;
 }
 
-/* ========= MOBILE MEDIA QUERIES ========= */
+/* ========== MOBILE MEDIA QUERIES ========== */
 @media screen and (max-width: 968px) {
-  /* Move navbar to bottom on mobile */
+  /* Navbar pinned to bottom on mobile */
   .navbar {
     justify-content: space-between;
     position: fixed;
@@ -141,22 +134,24 @@ body {
     padding: 10px;
   }
 
-  /* Mobile nav (drawer) */
+  /* Mobile nav (drawer) anchored from the bottom */
   .nav-links {
     flex-direction: column;
     position: fixed;
-    top: 0;
-    bottom: 0;
-    right: -70%;
+    top: auto; /* not pinned to the top */
+    bottom: 80px; /* start 80px up from bottom of screen */
+    height: auto; /* auto height based on content */
+    right: -70%; /* hidden to the right by default */
     width: 25%;
     background-color: #dfebff;
-    padding: 60px 20px;
-    gap: 30px;
+    padding: 20px;
+    gap: 20px;
     z-index: 999;
     overflow: hidden;
     visibility: hidden;
     opacity: 0;
     transition: right 0.3s ease, opacity 0.3s ease;
+    border-radius: 10px 0 0 10px; /* slight round corners on the left side */
   }
 
   .nav-links.show {
@@ -165,16 +160,19 @@ body {
     opacity: 1;
   }
 
-  /* Show the mobile logo when the nav is open */
+  /* Show the mobile logo and links when nav is open */
   .nav-links.show .mobile-nav-image,
   .nav-links.show a {
     display: block;
   }
 
+  /* Add space at the top of the drawer content if needed */
   .mobile-nav-image {
+    display: block;
     text-align: center;
-    z-index: 1;
+    margin-top: 10px; /* adjust to push logo down more */
   }
+
   .mobile-nav-image img {
     max-width: 100px;
     width: 80%;
@@ -184,15 +182,14 @@ body {
 
   .nav-links a {
     position: relative;
-    z-index: 1;
     background: #4384f4;
     color: #fff;
     font-size: 1.2rem;
     padding: 10px 15px;
     border-radius: 5px;
-    width: 100%;
     text-align: center;
     text-decoration: none;
+    width: 100%;
   }
 
   .nav-links a:hover {
@@ -200,6 +197,7 @@ body {
     color: #000;
   }
 
+  /* Hamburger icon styling */
   .hamburger {
     display: block;
     position: fixed;
@@ -211,7 +209,7 @@ body {
     z-index: 1001;
   }
 
-  /* Make hero fill the screen from the top on mobile */
+  /* Remove top margin from hero on mobile */
   .hero {
     margin-top: 0;
   }
