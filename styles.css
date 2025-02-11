@@ -108,10 +108,10 @@ body {
 
 /* Generic Section Wrapper */
 .section {
-  padding: 60px 20px;
+  padding: 20px 20px;
   max-width: 1200px;
   margin: 0 auto;
-  text-align: center;
+  text-align: center; /* default center for headings, can override below */
 }
 
 /* Footer */
@@ -138,10 +138,10 @@ body {
   .nav-links {
     flex-direction: column;
     position: fixed;
-    top: auto; /* not pinned to the top */
-    bottom: 80px; /* start 80px up from bottom of screen */
-    height: auto; /* auto height based on content */
-    right: -70%; /* hidden to the right by default */
+    top: auto;
+    bottom: 80px;
+    height: auto;
+    right: -70%;
     width: 25%;
     background-color: #dfebff;
     padding: 20px;
@@ -151,7 +151,7 @@ body {
     visibility: hidden;
     opacity: 0;
     transition: right 0.3s ease, opacity 0.3s ease;
-    border-radius: 10px 0 0 10px; /* slight round corners on the left side */
+    border-radius: 10px 0 0 10px;
   }
 
   .nav-links.show {
@@ -166,11 +166,10 @@ body {
     display: block;
   }
 
-  /* Add space at the top of the drawer content if needed */
   .mobile-nav-image {
     display: block;
     text-align: center;
-    margin-top: 10px; /* adjust to push logo down more */
+    margin-top: 10px;
   }
 
   .mobile-nav-image img {
@@ -213,6 +212,7 @@ body {
   .hero {
     margin-top: 0;
   }
+
   .hero-button {
     margin-top: 20px;
   }
@@ -221,4 +221,49 @@ body {
   body {
     padding-bottom: 40px;
   }
+}
+
+/* ===============================================
+   Programs Section - Responsive Images & Icons
+   =============================================== */
+.programs-section .program-benefits {
+  display: flex;
+  flex-wrap: wrap;          /* allows items to wrap on smaller screens */
+  justify-content: center;  /* centers the benefit items in the row */
+  gap: 20px;                /* space between items */
+}
+
+.programs-section .benefit {
+  flex: 1 1 250px;          /* grows/shrinks, min 250px wide before wrapping */
+  max-width: 400px;         /* optional max width per benefit card */
+  /* override the default center alignment for the textual content */
+  text-align: left;
+}
+
+.programs-section .benefit img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Make icon much smaller, align with heading text on the left */
+.benefit h3 {
+  display: flex;           /* place icon and text on one line */
+  align-items: center;     /* vertically center them */
+  justify-content: flex-start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.benefit p {
+  text-align: left;
+}
+
+.benefit-icon {
+  width: 16px;      /* about 75% smaller than 24px */
+  height: auto;
+  margin-right: 8px; 
+  vertical-align: middle;
 }
