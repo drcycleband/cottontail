@@ -48,5 +48,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+// script.js
+
+// Grab elements
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("nav-links");
+
+// Toggle mobile nav
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("show");
+});
+
+
+
   // (If you removed fade anchor code for smooth scrolling, it's not here)
 });

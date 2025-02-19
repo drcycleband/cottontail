@@ -9,8 +9,37 @@
     <title>Cottontail Childcare & Education in Springboro, OH | Daycare & Preschool</title>
     <meta
       name="description"
-      content="Cottontail Childcare & Education in Springboro, Ohio offers a safe, nurturing environment for your child. Enroll in our daycare, preschool, or toddler programs today!"
+      content="Cottontail Childcare & Education in Springboro, Ohio (near Dayton) offers a safe, nurturing environment for your child. Enroll in our daycare, preschool, or toddler programs today!"
     />
+
+    <!-- Local Business JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Cottontail Childcare & Education",
+      "image": "https://www.yoursite.com/images/img/logo.png",
+      "@id": "",
+      "url": "https://www.yoursite.com/",
+      "telephone": "9375436966",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Main Street",
+        "addressLocality": "Springboro",
+        "addressRegion": "OH",
+        "postalCode": "45066",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "39.5284279715962",
+        "longitude": "-84.22503662394226"
+      },
+      "openingHours": "Mo-Fr 07:30-18:00",
+      "sameAs": []
+    }
+    </script>
 
     <!-- Styles & Favicon -->
     <link rel="stylesheet" href="styles.css" />
@@ -33,6 +62,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#programs">Programs</a></li>
+        <li><a href="#about-us">About Us</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#location">Location</a></li>
         <li>
@@ -49,22 +79,28 @@
     <section id="home" class="hero">
       <img
         src="images/img/newHeroBunny.jpg"
-        alt="Happy children playing at Cottontail Childcare in Springboro, Ohio"
+        alt="Children playing at Cottontail Childcare in Springboro, Ohio daycare"
         class="hero-image"
       />
+    
     </section>
 
     <!-- Enroll Section -->
     <section class="section enroll-section">
-      <h1
-        style="color: #3c5297; text-align: center; font-size: 1.8rem; margin: 0 0 20px;"
-      >
+      <h1 style="color: #3c5297; font-size: 1.8rem; margin: 0 0 20px;">
         QUALITY DAYCARE & PRESCHOOL IN SPRINGBORO, OH
       </h1>
+      <p style="max-width: 700px; margin: 0 auto;">
+        Welcome to Cottontail Childcare & Education—your trusted neighborhood
+        daycare in Springboro, Ohio. With small class sizes and a nurturing
+        environment, we ensure every child receives the attention they need
+        to learn, grow, and thrive. We’re conveniently located near Dayton
+        and proudly serve families throughout the Springboro area.
+      </p>
       <a
         href="https://www.himama.com/online_registration/apply/cottontail-childcare-education"
         class="hero-button"
-        style="display: inline-block; margin: 0 auto;"
+        style="display: block; margin: 20px auto;"
         >Enroll Now</a
       >
     </section>
@@ -84,23 +120,32 @@
         <div class="benefit">
           <img
             src="images/img/471551931_3860821177462826_7761613357307769831_n.JPEG"
-            alt="Small class size"
+            alt="Small class size at Cottontail Childcare in Springboro"
           />
           <h3>✅ Small Class Size</h3>
           <p>Only 6 children per class for one-on-one attention.</p>
         </div>
         <div class="benefit">
-          <img src="images/img/Kid4.jpg" alt="Creative learning space" />
+          <img
+            src="images/img/Kid4.jpg"
+            alt="Creative learning space in our Springboro childcare center"
+          />
           <h3>✅ Creative Learning Space</h3>
           <p>Where imagination and education come to life.</p>
         </div>
         <div class="benefit">
-          <img src="images/img/Kid6.jpg" alt="Home-like atmosphere" />
+          <img
+            src="images/img/Kid6.jpg"
+            alt="Home-like atmosphere at Cottontail daycare near Dayton"
+          />
           <h3>✅ Loving, Home-Like Atmosphere</h3>
           <p>Every child is valued and supported.</p>
         </div>
         <div class="benefit">
-          <img src="images/img/Kid2.jpg" alt="Affordable childcare" />
+          <img
+            src="images/img/Kid2.jpg"
+            alt="Affordable childcare option in Springboro"
+          />
           <h3>✅ Affordable Care</h3>
           <p>
             Full-time care for just <strong>$250/week</strong> (Ages 18 months -
@@ -125,9 +170,30 @@
       >
     </section>
 
+    <!-- About Us Section -->
+    <section id="about-us" class="section">
+      <h2>About Us</h2>
+      <p style="max-width: 700px; margin: 0 auto;">
+        At Cottontail Childcare & Education, our mission is to foster a
+        supportive, home-like environment that encourages children to explore,
+        learn, and develop essential life skills. We believe in individualized
+        attention, achieved through maintaining small class sizes and employing
+        dedicated, qualified caregivers who are passionate about early
+        childhood education.
+      </p>
+      <p style="max-width: 700px; margin: 10px auto;">
+        Whether you’re searching for a caring daycare in Springboro or a
+        preschool program near Dayton, we welcome children from all backgrounds
+        to join our family. Our approach combines structured learning with
+        creative play, ensuring every child is supported as they grow socially,
+        emotionally, and academically. Come visit us to see how our nurturing
+        atmosphere can help your little one thrive!
+      </p>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="section testimonials-section">
-      <h2 style="text-align: center; margin-bottom: 10px;">Testimonials</h2>
+      <h2 style="margin-bottom: 10px;">Testimonials</h2>
       <div id="shapo-widget-c4e9757d4d330b68192e"></div>
       <script
         id="shapo-embed-js"
@@ -136,31 +202,33 @@
         defer
       ></script>
     </section>
-    
-<!-- Location of Business -->
-<section id="location">
-  <h2 style="text-align: center; margin-bottom: 10px;">Our Location</h2>
 
-  <!-- Responsive Map Container with Padding -->
-  <div style="padding: 40px;">
-      <div style="position: relative; overflow: hidden; padding-top: 56.25%; max-width: 100%; height: 0;">
-          <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3077.3823430341654!2d-84.22503662394226!3d39.5284279715962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88408b331da97845%3A0x49536be0aa159a10!2sCottontail%20Childcare%20%26%20Education!5e0!3m2!1sen!2sus!4v1739922901163!5m2!1sen!2sus" 
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-              allowfullscreen="" 
-              loading="lazy" 
-              referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+    <!-- Location of Business -->
+    <section id="location" class="section">
+      <h2 style="margin-bottom: 10px;">Our Location</h2>
+
+      <!-- Responsive Map Container with Padding -->
+      <div style="padding: 40px;">
+        <div style="position: relative; overflow: hidden; padding-top: 56.25%; max-width: 100%; height: 0;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3077.3823430341654!2d-84.22503662394226!3d39.5284279715962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88408b331da97845%3A0x49536be0aa159a10!2sCottontail%20Childcare%20%26%20Education!5e0!3m2!1sen!2sus!4v1739922901163!5m2!1sen!2sus"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
       </div>
-  </div>
-</section>
-
-
-
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
       <p>© 2025 Cottontail Childcare & Education LLC. All rights reserved.</p>
+      <p>
+        123 Main Street, Springboro, OH 45066<br />
+        <strong>Phone:</strong> <a href="tel:9375436966">937-543-6966</a><br />
+        <strong>Hours:</strong> Monday - Friday, 7:30 AM - 6:00 PM
+      </p>
     </footer>
   </body>
 </html>
