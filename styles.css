@@ -7,30 +7,56 @@ html,
 body {
   margin: 0;
   padding: 0;
-  -webkit-touch-callout: none;
-  -webkit-text-size-adjust: none;
   scroll-behavior: smooth;
-  font-family: Arial, sans-serif;
-  /* Center all text by default */
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
   text-align: center;
 }
+
+/* CSS Variables */
+:root {
+  --primary: #3c5297; /* Main blue */
+  --secondary: #ffc0cb; /* Pink for buttons */
+  --hover: #ff85a2; /* Hover pink */
+  --background: #dfebff; /* Light blue background */
+  --text: #2d3867; /* Dark text */
+  --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  color: var(--primary);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+p { max-width: 700px; margin: 10px auto; }
+
+/* Skip Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #fff;
+  padding: 10px;
+  z-index: 100;
+}
+.skip-link:focus { top: 0; }
 
 /* Navbar */
 .navbar {
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  background: #dfebff;
-  color: #1d64a9;
+  background: var(--background);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 10;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
 }
 
 .logo-desktop-image {
@@ -38,19 +64,18 @@ body {
   height: auto;
 }
 
-/* Navigation Links */
 .nav-links {
   display: flex;
   align-items: center;
   gap: 20px;
   list-style: none;
   margin: 0;
-  margin-left: auto; /* so links appear to the right of logo */
+  margin-left: auto;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: #2d3867;
+  color: var(--text);
   padding: 10px;
   font-size: 1rem;
   transition: background 0.3s ease;
@@ -60,199 +85,76 @@ body {
   background-color: #ffffff;
 }
 
-/* Hide mobile logo by default on desktop */
-.mobile-nav-image {
-  display: none;
-}
-
-/* Hamburger (mobile) */
 .hamburger {
   display: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   background: none;
   border: none;
-  color: #fff;
+  color: var(--text);
   cursor: pointer;
-  z-index: 101;
+  transition: transform 0.3s ease;
+}
+
+.hamburger:active {
+  transform: scale(0.9);
 }
 
 /* Hero Section */
 .hero {
   position: relative;
-  margin-top: 55px; /* space for fixed navbar */
+  margin-top: 55px;
   background-color: #000;
-  color: #fff;
+  width: 100%;
+  overflow: hidden; /* Prevent any overflow issues */
 }
 
 .hero-image {
   display: block;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  margin: 0 auto;
+  object-fit: cover; /* Ensures the image scales to cover the container while maintaining aspect ratio */
+  margin: 0; /* Remove any default margins */
 }
 
-/* Hero Text Overlay */
 .hero-text-overlay {
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  max-width: 90%;
-  background: rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  border-radius: 5px;
+  background: var(--background); /* Use the light blue background for consistency */
+  padding: 10px; /* Reduced padding to bring content closer to the logo */
+  text-align: center;
+  color: var(--primary); /* Match heading color */
+  margin-bottom: 0; /* Remove any default margin below to tighten spacing with the logo */
 }
 
-/* Hero Button */
-.hero-button {
-  background: rgb(255, 188, 215);
+.hero-button, .enroll-button {
+  background: var(--secondary);
   color: #000;
-  padding: 15px 30px;
+  padding: 18px 40px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.1rem;
   border-radius: 5px;
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 10px; /* Reduced margin for tighter spacing between text and button */
+  transition: background 0.3s ease;
 }
 
-.hero-button:hover {
-  background: #ff85a2;
+.hero-button:hover, .enroll-button:hover {
+  background: var(--hover);
 }
 
 /* Generic Section Wrapper */
 .section {
-  padding: 20px 20px;
+  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Enroll Button */
-.enroll-button {
-  display: inline-block;
-  margin-top: 15px;
-  background: #ffc0cb;
-  color: #000;
-  padding: 15px 30px;
-  font-weight: bold;
-  border-radius: 5px;
-  text-decoration: none;
+.enroll-title {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin: 0 0 20px;
 }
 
-.enroll-button:hover {
-  background: #ff85a2;
-}
-
-/* Footer */
-.footer {
-  background: #dfebff;
-  color: #3e5fcb;
-  padding: 20px;
-}
-
-/* ========== MOBILE MEDIA QUERIES ========== */
-@media screen and (max-width: 968px) {
-  /* Navbar pinned to bottom on mobile */
-  .navbar {
-    justify-content: space-between;
-    position: fixed;
-    bottom: 0;
-    top: auto;
-    width: 100%;
-    padding: 10px;
-  }
-
-  /* Mobile nav (drawer) anchored from the bottom */
-  .nav-links {
-    flex-direction: column;
-    position: fixed;
-    top: auto;
-    bottom: 80px;
-    height: auto;
-    right: -70%;
-    width: 25%;
-    background-color: #dfebff;
-    padding: 20px;
-    gap: 20px;
-    z-index: 999;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    transition: right 0.3s ease, opacity 0.3s ease;
-    border-radius: 10px 0 0 10px;
-  }
-
-  .nav-links.show {
-    right: 0;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  /* Show the mobile logo and links when nav is open */
-  .nav-links.show .mobile-nav-image,
-  .nav-links.show a {
-    display: block;
-  }
-
-  .mobile-nav-image {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .mobile-nav-image img {
-    max-width: 100px;
-    width: 80%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .nav-links a {
-    position: relative;
-    background: #4384f4;
-    color: #fff;
-    font-size: 1.2rem;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    width: 100%;
-  }
-
-  .nav-links a:hover {
-    background: #dfebff;
-    color: #000;
-  }
-
-  /* Hamburger icon styling */
-  .hamburger {
-    display: block;
-    position: fixed;
-    bottom: 10px;
-    left: 90%;
-    transform: translateX(-50%);
-    font-size: 2rem;
-    color: #526d8a;
-    z-index: 1001;
-  }
-
-  /* Remove top margin from hero on mobile */
-  .hero {
-    margin-top: 0;
-  }
-
-  .hero-text-overlay {
-    bottom: 20%;
-    max-width: 80%;
-  }
-
-  /* Prevent content from going under navbar on mobile */
-  body {
-    padding-bottom: 60px;
-  }
-}
-
-/* Programs Section - Responsive Layout */
+/* Programs Section */
 .programs-section .program-benefits {
   display: flex;
   flex-wrap: wrap;
@@ -260,26 +162,131 @@ body {
   gap: 20px;
 }
 
-/* Make each 'benefit' area center-aligned now */
-.programs-section .benefit {
+.program-benefits .benefit {
   flex: 1 1 250px;
   max-width: 400px;
-  text-align: center;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
 }
 
-.programs-section .benefit img {
+.program-benefits .benefit:hover {
+  transform: translateY(-5px);
+}
+
+.program-benefits .benefit img {
   width: 100%;
   height: auto;
-  display: block;
+  aspect-ratio: 4 / 3;
+  max-height: 200px;
   object-fit: cover;
 }
 
-/* We removed left alignment from headings and paragraphs below. */
-.benefit h3 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.benefit h3 { margin: 10px 0; }
+
+/* Location Map */
+.map-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+  max-width: 100%;
+  height: 0;
+  margin: 40px 0;
 }
 
-.benefit p {
-  margin: 0 auto;
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Footer */
+.footer {
+  background: var(--background);
+  color: var(--primary);
+  padding: 20px;
+}
+
+.back-to-top {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-to-top:hover {
+  color: var(--hover);
+}
+
+/* Mobile Media Queries */
+@media screen and (max-width: 968px) {
+  .navbar {
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    padding: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    position: fixed;
+    bottom: 80px;
+    right: 0;
+    width: 25%;
+    background: var(--background);
+    padding: 20px;
+    gap: 20px;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    border-radius: 10px 0 0 10px;
+  }
+
+  .nav-links.show {
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    background: var(--primary);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  .nav-links a:hover {
+    background: #fff;
+    color: var(--text);
+  }
+
+  .hamburger {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left: 90%;
+    transform: translateX(-50%);
+  }
+
+  .hero {
+    margin-top: 0;
+  }
+
+  .hero-text-overlay {
+    padding: 8px; /* Reduced padding for mobile */
+  }
+
+  .hero-button {
+    padding: 15px 30px; /* Slightly smaller on mobile for better touch targets */
+    font-size: 1rem;
+    margin-top: 8px; /* Reduced margin for mobile */
+  }
+
+  body {
+    padding-bottom: 60px;
+  }
 }
