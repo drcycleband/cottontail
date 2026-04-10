@@ -44,14 +44,14 @@ button:focus-visible {
 
 /* Skip Link */
 .skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
+  position: fixed;
+  top: -100px;
+  left: 12px;
   background: #fff;
   padding: 10px;
-  z-index: 100;
+  z-index: 1000;
 }
-.skip-link:focus { top: 0; }
+.skip-link:focus { top: 12px; }
 
 /* Navbar */
 .navbar {
@@ -305,33 +305,42 @@ button:focus-visible {
     flex-direction: column;
     align-items: stretch;
     position: fixed;
-    bottom: 80px;
-    right: 0;
-    width: min(320px, 86vw);
+    right: 12px;
+    bottom: 86px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
     background: var(--background);
-    padding: 20px;
-    gap: 20px;
+    padding: 12px;
+    gap: 10px;
     z-index: 999;
-    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(calc(100% + 120px));
     transition: transform 0.3s ease;
-    border-radius: 10px 0 0 10px;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(45, 56, 103, 0.25);
   }
 
   .nav-links.show {
-    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  .nav-links a {
+  .nav-links li a {
     display: block;
     background: var(--primary);
     color: #fff;
-    font-size: 1.2rem;
-    padding: 10px 15px;
+    font-size: 1rem;
+    padding: 12px 15px;
     border-radius: 5px;
     width: 100%;
   }
 
-  .nav-links a:hover {
+  .nav-links li a:hover,
+  .nav-links li a:focus-visible {
     background: #fff;
     color: var(--text);
   }
@@ -349,7 +358,12 @@ button:focus-visible {
   }
 
   .hero-text-overlay {
-    padding: 8px; /* Reduced padding for mobile */
+    padding: 18px 14px 22px;
+  }
+
+  .hero-text-overlay h1 {
+    font-size: 2rem;
+    line-height: 1.2;
   }
 
   .hero-button {

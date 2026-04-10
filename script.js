@@ -18,5 +18,24 @@ document.addEventListener("DOMContentLoaded", () => {
         hamburger.setAttribute("aria-expanded", "false");
       });
     });
+
+    document.addEventListener("click", event => {
+      if (!navLinks.classList.contains("show")) return;
+
+      const clickedMenu = navLinks.contains(event.target);
+      const clickedButton = hamburger.contains(event.target);
+
+      if (!clickedMenu && !clickedButton) {
+        navLinks.classList.remove("show");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        navLinks.classList.remove("show");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 });
