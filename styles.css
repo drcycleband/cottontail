@@ -216,33 +216,6 @@ button:focus-visible {
   max-width: 1200px;
 }
 
-.space-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  margin: 24px auto 0;
-  max-width: 980px;
-}
-
-.space-gallery figure {
-  margin: 0;
-}
-
-.space-gallery img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  filter: brightness(0.97) contrast(0.99) saturate(0.98);
-}
-
-.space-gallery figcaption {
-  color: var(--text);
-  font-weight: bold;
-  margin-top: 8px;
-}
-
 /* Trust & FAQ Sections */
 .trust-section {
   background: var(--background);
@@ -411,10 +384,6 @@ button:focus-visible {
 
   .trust-points {
     grid-template-columns: 1fr;
-  }
-
-  .space-gallery {
-    gap: 18px;
   }
 
   body {
