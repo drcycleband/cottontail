@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (hamburger && navLinks) {
     // Toggle mobile nav
     hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
+      const isOpen = navLinks.classList.toggle("show");
+      hamburger.setAttribute("aria-expanded", String(isOpen));
     });
 
     // Close menu on link click
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(link => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("show");
+        hamburger.setAttribute("aria-expanded", "false");
       });
     });
   }

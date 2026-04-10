@@ -9,23 +9,34 @@
     <title>Cottontail Childcare & Education in Springboro, OH | Daycare & Preschool</title>
     <meta
       name="description"
-      content="Cottontail Childcare & Education in Springboro, Ohio (near Dayton) offers a safe, nurturing environment for your child. Enroll in our daycare, preschool, or toddler programs today!"
+      content="Cottontail Childcare & Education offers small-group daycare and preschool care for ages 2 to 5 in Springboro, Ohio. Call or text to schedule a tour."
     />
+    <link rel="canonical" href="https://www.cottontailchildcare.com/" />
+    <meta property="og:title" content="Cottontail Childcare & Education in Springboro, OH" />
+    <meta
+      property="og:description"
+      content="Small-group daycare and preschool care for ages 2 to 5 in Springboro, Ohio."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.cottontailchildcare.com/" />
+    <meta property="og:image" content="https://www.cottontailchildcare.com/images/img/newHeroBunny.jpg" />
 
     <!-- Local Business JSON-LD Schema -->
     <script type="application/ld+json">
     {
-      "@context": "http://schema.org",
-      "@type": "LocalBusiness",
+      "@context": "https://schema.org",
+      "@type": "ChildCare",
       "name": "Cottontail Childcare & Education",
-      "image": "https://www.yoursite.com/images/img/logo.png",
-      "@id": "",
-      "url": "https://www.yoursite.com/",
-      "telephone": "9375436966",
+      "@id": "https://www.cottontailchildcare.com/#childcare",
+      "url": "https://www.cottontailchildcare.com/",
+      "image": "https://www.cottontailchildcare.com/images/img/newHeroBunny.jpg",
+      "logo": "https://www.cottontailchildcare.com/images/img/logo.png",
+      "description": "Small-group daycare and preschool care for children ages 2 to 5 in Springboro, Ohio.",
+      "telephone": "+1-937-543-6966",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "123 Main Street",
+        "streetAddress": "Merritt Pass",
         "addressLocality": "Springboro",
         "addressRegion": "OH",
         "postalCode": "45066",
@@ -36,14 +47,67 @@
         "latitude": "39.5284279715962",
         "longitude": "-84.22503662394226"
       },
-      "openingHours": "Mo-Fr 07:30-18:00",
-      "sameAs": []
+      "openingHours": "Mo-Fr 08:00-17:00",
+      "areaServed": [
+        "Springboro, OH",
+        "Dayton, OH",
+        "Cincinnati, OH"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What ages does Cottontail Childcare & Education care for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cottontail Childcare & Education offers care for children ages 2 to 5."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the hours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cottontail Childcare & Education is open Monday through Friday from 8:00 AM to 5:00 PM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Cottontail Childcare & Education located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cottontail Childcare & Education is located in Springboro, Ohio, 45066."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How small is the group size?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enrollment is intentionally small, with only 6 children, so each child receives personal attention."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can families schedule a tour?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Families can call or text 937-543-6966 or use the Schedule a Tour link on the website."
+          }
+        }
+      ]
     }
     </script>
 
     <!-- Styles & Favicon -->
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/png" href="images/img/Asset 7.png" />
+    <link rel="icon" type="image/png" href="images/img/favicon-32.png" />
+    <link rel="apple-touch-icon" href="images/img/favicon-192.png" />
     <link rel="preload" href="images/img/newHeroBunny.jpg" as="image" />
 
     <!-- JavaScript -->
@@ -62,24 +126,31 @@
           alt="Cottontail Childcare & Education Logo"
           class="logo-desktop-image"
           width="160"
-          height="auto"
+          height="38"
         />
       </div>
       <ul class="nav-links" id="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#programs">Programs</a></li>
         <li><a href="#about-us">About Us</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#location">Location</a></li>
         <li>
           <a
             href="https://www.himama.com/online_registration/apply/cottontail-childcare-education"
-            aria-label="Contact us to enroll"
-            >Contact</a
+            aria-label="Schedule a tour or apply for enrollment"
+            >Schedule a Tour</a
           >
         </li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">☰</button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation menu"
+        aria-controls="nav-links"
+        aria-expanded="false"
+      >☰</button>
     </nav>
 
     <!-- Hero Section -->
@@ -88,24 +159,25 @@
         src="images/img/newHeroBunny.jpg"
         alt="Children playing at Cottontail Childcare in Springboro, Ohio daycare"
         class="hero-image"
-        width="1200"
-        height="600"
+        width="2000"
+        height="902"
       />
       <div class="hero-text-overlay">
-        <h1>Where Your Child Thrives!</h1>
+        <h1>Small-Group Daycare & Preschool in Springboro, OH</h1>
+        <p>Small-group daycare and preschool care for ages 2 to 5 in Springboro, Ohio.</p>
         <a
           href="https://www.himama.com/online_registration/apply/cottontail-childcare-education"
           class="hero-button"
-          >Enroll Today</a
+          >Schedule a Tour</a
         >
       </div>
     </section>
 
     <!-- Enroll Section -->
     <section class="section enroll-section">
-      <h1 class="enroll-title">QUALITY DAYCARE & PRESCHOOL IN SPRINGBORO, OH</h1>
+      <h2 class="enroll-title">Quality Daycare & Preschool in Springboro, OH</h2>
       <p>
-        Welcome to Cottontail Childcare & Education—your trusted neighborhood daycare in Springboro, Ohio. With small class size and a nurturing environment, we ensure every child receives the attention they need to learn, grow, and thrive. Conveniently located between Dayton and Cincinnati, we proudly serve families throughout the Springboro area.
+        Welcome to Cottontail Childcare & Education, your trusted neighborhood daycare in Springboro, Ohio. With a small group size and a nurturing environment, every child receives the attention they need to learn, grow, and thrive. Conveniently located between Dayton and Cincinnati, we proudly serve families throughout the Springboro area.
       </p>
     </section>
 
@@ -126,11 +198,11 @@
             height="200"
           />
           <h3>Small Class Size</h3>
-          <p>We enroll only 6 children per year, ensuring one-on-one attention for each child.</p>
+          <p>We keep enrollment intentionally small, with only 6 children, so each child receives one-on-one attention.</p>
         </div>
         <div class="benefit">
           <img
-            src="images/img/Kid4.jpg"
+            src="images/img/Kid4-card.jpg"
             alt="Creative learning space in our Springboro childcare center"
             loading="lazy"
             width="300"
@@ -169,7 +241,7 @@
       <a
         href="https://www.himama.com/online_registration/apply/cottontail-childcare-education"
         class="enroll-button"
-        >Click Here - Enroll Now</a
+        >Schedule a Tour</a
       >
     </section>
 
@@ -182,6 +254,56 @@
       <p>
         Whether you’re searching for a caring daycare in Springboro or a preschool program near Dayton, we welcome children from all backgrounds to join our family. Our approach combines structured learning with creative play, ensuring every child is supported as they grow socially, emotionally, and academically. Come visit us to see how our nurturing atmosphere can help your little one thrive!
       </p>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="section trust-section">
+      <h2>Why Families Choose Cottontail</h2>
+      <div class="trust-points">
+        <div>
+          <h3>Small Group Care</h3>
+          <p>Enrollment stays intentionally small, with only 6 children, so every child can be known, supported, and encouraged.</p>
+        </div>
+        <div>
+          <h3>Ages 2 to 5</h3>
+          <p>Daily care blends preschool learning, creative play, social development, and a calm home-like rhythm.</p>
+        </div>
+        <div>
+          <h3>Springboro Families</h3>
+          <p>Located in Springboro, OH 45066, Cottontail is convenient for families near Dayton, Cincinnati, and the surrounding area.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>What ages do you care for?</summary>
+          <p>Cottontail offers daycare and preschool care for children ages 2 to 5.</p>
+        </details>
+        <details>
+          <summary>What are your hours?</summary>
+          <p>Hours are Monday through Friday, 8:00 AM to 5:00 PM.</p>
+        </details>
+        <details>
+          <summary>How many children do you enroll?</summary>
+          <p>Enrollment is intentionally small, with only 6 children, so each child receives personal attention.</p>
+        </details>
+        <details>
+          <summary>What is the weekly rate?</summary>
+          <p>Full-time care is $260 per week for ages 2 to 5.</p>
+        </details>
+        <details>
+          <summary>Where are you located?</summary>
+          <p>Cottontail Childcare & Education is located in Springboro, Ohio, 45066.</p>
+        </details>
+        <details>
+          <summary>How do families schedule a tour?</summary>
+          <p>Call or text <a href="tel:9375436966">937-543-6966</a> or use the Schedule a Tour button to apply online.</p>
+        </details>
+      </div>
     </section>
 
     <!-- Testimonials Section -->
@@ -205,6 +327,7 @@
           width="100%"
           height="100%"
           style="border:0;"
+          title="Cottontail Childcare & Education location on Google Maps"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -214,11 +337,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>© 2025 Cottontail Childcare & Education LLC. All rights reserved.</p>
+      <p>© 2026 Cottontail Childcare & Education LLC. All rights reserved.</p>
       <p>
         Merritt Pass, Springboro, OH 45066<br />
         <strong>Phone:</strong> <a href="tel:9375436966">937-543-6966</a><br />
-        <strong>Hours:</strong> Monday - Friday, 7:30 AM - 5:00 PM
+        <strong>Hours:</strong> Monday - Friday, 8:00 AM - 5:00 PM
       </p>
       <p><a href="#home" class="back-to-top">Back to Top</a></p>
     </footer>

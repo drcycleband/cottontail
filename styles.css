@@ -36,6 +36,12 @@ h3 { font-size: 1.25rem; }
 
 p { max-width: 700px; margin: 10px auto; }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--hover);
+  outline-offset: 3px;
+}
+
 /* Skip Link */
 .skip-link {
   position: absolute;
@@ -118,10 +124,19 @@ p { max-width: 700px; margin: 10px auto; }
 
 .hero-text-overlay {
   background: var(--background); /* Use the light blue background for consistency */
-  padding: 10px; /* Reduced padding to bring content closer to the logo */
+  padding: 18px 20px 24px; /* Reduced padding to bring content closer to the logo */
   text-align: center;
   color: var(--primary); /* Match heading color */
   margin-bottom: 0; /* Remove any default margin below to tighten spacing with the logo */
+}
+
+.hero-text-overlay h1 {
+  margin: 0;
+}
+
+.hero-text-overlay p {
+  color: var(--text);
+  font-size: 1.1rem;
 }
 
 .hero-button, .enroll-button {
@@ -139,6 +154,11 @@ p { max-width: 700px; margin: 10px auto; }
 
 .hero-button:hover, .enroll-button:hover {
   background: var(--hover);
+}
+
+.hero-button:focus-visible,
+.enroll-button:focus-visible {
+  outline-color: var(--primary);
 }
 
 /* Generic Section Wrapper */
@@ -185,6 +205,56 @@ p { max-width: 700px; margin: 10px auto; }
 }
 
 .benefit h3 { margin: 10px 0; }
+
+/* Trust & FAQ Sections */
+.trust-section {
+  background: var(--background);
+  max-width: none;
+}
+
+.trust-section > h2,
+.trust-section > p,
+.trust-points,
+.faq-section {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trust-points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.trust-points > div {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.faq-list details {
+  border-bottom: 1px solid rgba(45, 56, 103, 0.2);
+  padding: 14px 0;
+}
+
+.faq-list summary {
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.faq-list p {
+  margin-left: 0;
+  margin-right: 0;
+}
 
 /* Location Map */
 .map-container {
@@ -233,10 +303,11 @@ p { max-width: 700px; margin: 10px auto; }
 
   .nav-links {
     flex-direction: column;
+    align-items: stretch;
     position: fixed;
     bottom: 80px;
     right: 0;
-    width: 25%;
+    width: min(320px, 86vw);
     background: var(--background);
     padding: 20px;
     gap: 20px;
@@ -251,6 +322,7 @@ p { max-width: 700px; margin: 10px auto; }
   }
 
   .nav-links a {
+    display: block;
     background: var(--primary);
     color: #fff;
     font-size: 1.2rem;
@@ -268,8 +340,8 @@ p { max-width: 700px; margin: 10px auto; }
     display: block;
     position: fixed;
     bottom: 20px;
-    left: 90%;
-    transform: translateX(-50%);
+    right: 20px;
+    left: auto;
   }
 
   .hero {
@@ -284,6 +356,10 @@ p { max-width: 700px; margin: 10px auto; }
     padding: 15px 30px; /* Slightly smaller on mobile for better touch targets */
     font-size: 1rem;
     margin-top: 8px; /* Reduced margin for mobile */
+  }
+
+  .trust-points {
+    grid-template-columns: 1fr;
   }
 
   body {
