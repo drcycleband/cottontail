@@ -151,6 +151,7 @@
         <li><a href="#programs">Programs</a></li>
         <li><a href="#why-cottontail">Why Cottontail</a></li>
         <li><a href="#our-space">Our Space</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#about-us">About Us</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -175,13 +176,29 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <img
-        src="images/img/newHeroBunny.jpg"
-        alt="Children playing at Cottontail Childcare in Springboro, Ohio daycare"
-        class="hero-image"
-        width="2000"
-        height="902"
-      />
+      <div class="hero-media">
+        <div class="hero-image-panel">
+          <img
+            src="images/img/newHeroBunny.jpg"
+            alt="Children playing at Cottontail Childcare in Springboro, Ohio daycare"
+            class="hero-image"
+            width="2000"
+            height="902"
+          />
+        </div>
+        <div class="hero-video-panel" aria-label="A short glimpse of play and learning at Cottontail">
+          <video
+            class="hero-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          >
+            <source src="videos/hero-loop.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
       <div class="hero-text-overlay">
         <p class="eyebrow">Private Preschool &amp; Childcare in Springboro, OH</p>
         <h1>Where Little Learners Grow with Confidence</h1>
@@ -319,6 +336,95 @@
       <p>
         Cottontail is designed to feel calm, clean, and inviting, with room for reading, creative play, preschool activities, and small-group learning.
       </p>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery-section" aria-labelledby="gallery-title">
+      <p class="section-kicker">More Photos</p>
+      <h2 id="gallery-title">A Peek Inside Cottontail Days</h2>
+      <p>
+        From reading and preschool activities to creative play and outdoor time, these moments show the kind of warm, engaged days children enjoy here.
+      </p>
+
+      <div class="gallery-carousel" data-carousel>
+        <button class="gallery-control gallery-control-prev" type="button" data-carousel-prev aria-label="Show previous gallery photo">
+          &lsaquo;
+        </button>
+        <div class="gallery-viewport" aria-live="polite">
+          <div class="gallery-track">
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-01.jpg" alt="Outdoor play area with slide, ride-on toys, and artificial turf at Cottontail" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-02.jpg" alt="Children's books displayed in the reading area" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-03.jpg" alt="Children smiling while reading books near a sunny window" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-04.jpg" alt="Children holding colorful rainbow paintings" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-05.jpg" alt="Children playing with wooden blocks on a colorful rug" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-06.jpg" alt="Children peeking out of a playhouse window" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-07.jpg" alt="Children working on counting worksheets at a table" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-08.jpg" alt="Child smiling while wearing play glasses in the classroom" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-09.jpg" alt="Child playing pretend bakery with toy treats and a register" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-10.jpg" alt="Children playing together in a ball pit" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-11.jpg" alt="Children playing outside on a blue slide" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-12.jpg" alt="Child smiling outdoors near flowers and shrubs" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-13.jpg" alt="Children taking turns on the outdoor slide" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-14.jpg" alt="Children enjoying the outdoor play space with slide and rocker toys" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-15.jpg" alt="Two children smiling and holding hands" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-16.jpg" alt="Children riding toys on the outdoor patio near alphabet letters" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-17.jpg" alt="Children standing on a classroom rug holding stuffed animals" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-18.jpg" alt="Child smiling with a giraffe puppet in the play kitchen area" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-19.jpg" alt="Child playing with toy animals in the classroom" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-20.jpg" alt="Child practicing a letter activity on a touchscreen" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-21.jpg" alt="Child holding a Cookie Monster book in the reading area" />
+            </figure>
+            <figure class="gallery-slide">
+              <img src="images/gallery-processed/gallery-22.jpg" alt="Wide view of the bright Cottontail classroom and play area" />
+            </figure>
+          </div>
+        </div>
+        <button class="gallery-control gallery-control-next" type="button" data-carousel-next aria-label="Show next gallery photo">
+          &rsaquo;
+        </button>
+      </div>
+      <p class="gallery-status" data-carousel-status>Photo 1 of 22</p>
     </section>
 
     <!-- About Us Section -->
