@@ -156,6 +156,9 @@ const createGalleryItem = (item, index) => {
   const fields = makeElement("details", "gallery-details");
   const summary = makeElement("summary", "", "Edit");
   const detailsBody = makeElement("div", "gallery-details-body");
+  fields.addEventListener("toggle", () => {
+    row.draggable = !fields.open;
+  });
 
   const altLabel = makeElement("label", "edit-field");
   altLabel.appendChild(makeElement("span", "field-label", "Photo description"));
@@ -242,6 +245,11 @@ const createGalleryItem = (item, index) => {
   fields.append(summary, detailsBody);
 
   row.addEventListener("dragstart", event => {
+    if (fields.open) {
+      event.preventDefault();
+      return;
+    }
+
     draggedIndex = index;
     row.classList.add("dragging");
     event.dataTransfer.effectAllowed = "move";

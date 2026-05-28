@@ -19,6 +19,7 @@ body {
   background: linear-gradient(180deg, #eef7ff 0%, #f8fbfe 34%, #f3f8fc 100%);
   color: var(--text);
   font-family: Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
 }
 
 .admin-header,
@@ -208,6 +209,7 @@ section {
   min-width: 0;
   padding: 10px;
   position: relative;
+  touch-action: manipulation;
 }
 
 .gallery-item.dragging {
@@ -225,6 +227,7 @@ section {
   border-radius: 6px;
   object-fit: cover;
   width: 100%;
+  user-select: none;
 }
 
 .gallery-number {
@@ -357,12 +360,97 @@ textarea:focus {
 
 @media (max-width: 720px) {
   .admin-header,
+  main {
+    width: min(100% - 20px, 1180px);
+  }
+
+  .admin-header,
   .status-panel {
     align-items: stretch;
     flex-direction: column;
   }
 
+  .admin-header {
+    padding: 18px 0 12px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .header-note {
+    font-size: 0.98rem;
+  }
+
+  section {
+    padding: 14px;
+  }
+
+  .status-panel {
+    padding: 12px;
+  }
+
+  #status {
+    line-height: 1.35;
+  }
+
   .status-actions {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .status-actions button {
+    min-height: 48px;
+    padding: 12px 10px;
+  }
+
+  .gallery-panel-heading {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  .gallery-panel-heading p {
+    margin-top: 6px;
+  }
+
+  .gallery-uploader {
+    padding: 16px;
+  }
+
+  .gallery-uploader input {
+    max-width: 100%;
+  }
+
+  .gallery-list {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-item {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .gallery-preview {
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-number {
+    font-size: 0.95rem;
+    left: 18px;
+    padding: 9px 11px;
+    top: 18px;
+  }
+
+  .gallery-details summary,
+  .replace-details summary,
+  .gallery-actions button,
+  .upload-row button {
+    min-height: 48px;
+  }
+
+  textarea,
+  input {
+    font-size: 16px;
   }
 }
