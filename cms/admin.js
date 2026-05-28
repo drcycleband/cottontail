@@ -2,8 +2,11 @@ let content = { texts: {}, images: {}, gallery: [] };
 
 const statusElement = document.getElementById("status");
 const galleryFields = document.getElementById("gallery-fields");
+const galleryUploader = document.getElementById("gallery-uploader");
+const galleryUploadInput = document.getElementById("gallery-upload-input");
 const saveButton = document.getElementById("save-button");
 const publishButton = document.getElementById("publish-button");
+let draggedIndex = null;
 
 const setStatus = message => {
   statusElement.textContent = message;
@@ -106,59 +109,53 @@ const uploadPhotoSet = async file => {
   }
 };
 
-const createUploadCard = () => {
-  const addCard = makeElement("article", "gallery-add-card");
-  const addCopy = makeElement("div", "gallery-copy");
-  addCopy.append(
-    makeElement("h2", "", "Add New Gallery Photo"),
-    makeElement("p", "photo-path", "Choose a photo and it will be optimized for the website automatically.")
-  );
+const addFilesToGallery = async files => {
+  const images = Array.from(files).filter(file => file.type.startsWith("image/"));
+  if (images.length === 0) {
+    setStatus("Choose one or more photos first.");
+    return;
+  }
 
-  const addInput = document.createElement("input");
-  addInput.type = "file";
-  addInput.accept = "image/*";
+  galleryUploadInput.disabled = true;
+  saveButton.disabled = true;
+  publishButton.disabled = true;
 
-  const addButton = document.createElement("button");
-  addButton.type = "button";
-  addButton.className = "publish";
-  addButton.textContent = "Upload To Gallery";
-  addButton.addEventListener("click", async () => {
-    const file = addInput.files && addInput.files[0];
-    if (!file) {
-      setStatus("Choose a gallery photo first.");
-      return;
-    }
-
-    try {
-      addButton.disabled = true;
-      setStatus("Optimizing and uploading new gallery photo...");
-      const uploaded = await uploadPhotoSet(file);
+  try {
+    for (let index = 0; index < images.length; index += 1) {
+      setStatus(`Optimizing and uploading photo ${index + 1} of ${images.length}...`);
+      const uploaded = await uploadPhotoSet(images[index]);
       content.gallery.unshift({
         src: uploaded.path,
         thumb: uploaded.thumb,
         alt: "Cottontail Childcare photo"
       });
-      renderGalleryFields();
-      setStatus("Gallery photo added. Add a description, then Save Draft.");
-    } catch (error) {
-      setStatus(error.message || "Could not add gallery photo.");
-    } finally {
-      addButton.disabled = false;
     }
-  });
 
-  addCard.append(addCopy, addInput, addButton);
-  return addCard;
+    renderGalleryFields();
+    setStatus(`${images.length} photo${images.length === 1 ? "" : "s"} added. Drag to reorder, then Save Draft.`);
+  } catch (error) {
+    setStatus(error.message || "Could not add gallery photos.");
+  } finally {
+    galleryUploadInput.disabled = false;
+    saveButton.disabled = false;
+    publishButton.disabled = false;
+    galleryUploadInput.value = "";
+  }
 };
 
 const createGalleryItem = (item, index) => {
   const row = makeElement("article", "gallery-item");
+  row.draggable = true;
+  row.dataset.index = String(index);
+
   const preview = document.createElement("img");
   preview.className = "gallery-preview";
   prepPreviewImage(preview, imagePreviewSrc(item), item.alt || "");
 
-  const fields = makeElement("div", "gallery-copy");
-  fields.appendChild(makeElement("h3", "", `Gallery Photo ${index + 1}`));
+  const number = makeElement("span", "gallery-number", String(index + 1));
+  const fields = makeElement("details", "gallery-details");
+  const summary = makeElement("summary", "", "Edit");
+  const detailsBody = makeElement("div", "gallery-details-body");
 
   const altLabel = makeElement("label", "edit-field");
   altLabel.appendChild(makeElement("span", "field-label", "Photo description"));
@@ -170,8 +167,6 @@ const createGalleryItem = (item, index) => {
     setStatus("Unsaved changes.");
   });
   altLabel.appendChild(altInput);
-
-  const path = makeElement("p", "photo-path", item.src || "No photo selected");
 
   const replaceRow = makeElement("div", "upload-row");
   const replaceInput = document.createElement("input");
@@ -195,7 +190,6 @@ const createGalleryItem = (item, index) => {
       item.src = uploaded.path;
       item.thumb = uploaded.thumb;
       preview.src = uploaded.thumb || uploaded.path;
-      path.textContent = uploaded.path;
       setStatus("Photo replaced. Click Save Draft when you are done.");
     } catch (error) {
       setStatus(error.message || "Could not replace photo.");
@@ -205,13 +199,11 @@ const createGalleryItem = (item, index) => {
   });
   replaceRow.append(replaceInput, replaceButton);
 
-  fields.append(altLabel, replaceRow, path);
-
   const actions = makeElement("div", "gallery-actions");
   const up = document.createElement("button");
   up.type = "button";
   up.className = "secondary";
-  up.textContent = "Move Up";
+  up.textContent = "Up";
   up.disabled = index === 0;
   up.addEventListener("click", () => {
     [content.gallery[index - 1], content.gallery[index]] = [content.gallery[index], content.gallery[index - 1]];
@@ -222,7 +214,7 @@ const createGalleryItem = (item, index) => {
   const down = document.createElement("button");
   down.type = "button";
   down.className = "secondary";
-  down.textContent = "Move Down";
+  down.textContent = "Down";
   down.disabled = index === content.gallery.length - 1;
   down.addEventListener("click", () => {
     [content.gallery[index + 1], content.gallery[index]] = [content.gallery[index], content.gallery[index + 1]];
@@ -235,24 +227,84 @@ const createGalleryItem = (item, index) => {
   remove.className = "danger";
   remove.textContent = "Remove";
   remove.addEventListener("click", () => {
+    if (!window.confirm("Remove this gallery photo?")) return;
     content.gallery.splice(index, 1);
     renderGalleryFields();
     setStatus("Unsaved changes.");
   });
 
   actions.append(up, down, remove);
-  row.append(preview, fields, actions);
+  detailsBody.append(altLabel, replaceRow, actions);
+  fields.append(summary, detailsBody);
+
+  row.addEventListener("dragstart", event => {
+    draggedIndex = index;
+    row.classList.add("dragging");
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", String(index));
+  });
+
+  row.addEventListener("dragend", () => {
+    row.classList.remove("dragging");
+    draggedIndex = null;
+  });
+
+  row.addEventListener("dragover", event => {
+    event.preventDefault();
+    row.classList.add("drag-over");
+    event.dataTransfer.dropEffect = "move";
+  });
+
+  row.addEventListener("dragleave", () => {
+    row.classList.remove("drag-over");
+  });
+
+  row.addEventListener("drop", event => {
+    event.preventDefault();
+    row.classList.remove("drag-over");
+    const from = draggedIndex ?? Number(event.dataTransfer.getData("text/plain"));
+    const to = index;
+    if (!Number.isInteger(from) || from === to) return;
+
+    const [moved] = content.gallery.splice(from, 1);
+    content.gallery.splice(to, 0, moved);
+    renderGalleryFields();
+    setStatus("Gallery order changed. Click Save Draft when you are done.");
+  });
+
+  row.append(number, preview, fields);
   return row;
 };
 
 const renderGalleryFields = () => {
   galleryFields.innerHTML = "";
-  galleryFields.appendChild(createUploadCard());
 
   content.gallery.forEach((item, index) => {
     galleryFields.appendChild(createGalleryItem(item, index));
   });
 };
+
+galleryUploadInput.addEventListener("change", () => {
+  addFilesToGallery(galleryUploadInput.files);
+});
+
+["dragenter", "dragover"].forEach(eventName => {
+  galleryUploader.addEventListener(eventName, event => {
+    event.preventDefault();
+    galleryUploader.classList.add("drag-over");
+  });
+});
+
+["dragleave", "drop"].forEach(eventName => {
+  galleryUploader.addEventListener(eventName, event => {
+    event.preventDefault();
+    galleryUploader.classList.remove("drag-over");
+  });
+});
+
+galleryUploader.addEventListener("drop", event => {
+  addFilesToGallery(event.dataTransfer.files);
+});
 
 const saveContent = async () => {
   const response = await fetch("/api/content", {

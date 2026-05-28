@@ -12,7 +12,7 @@
       <div>
         <p class="eyebrow">Cottontail CMS</p>
         <h1>Gallery Editor</h1>
-        <p class="header-note">Add, replace, remove, and reorder gallery photos. Everything else on the website stays locked.</p>
+        <p class="header-note">Drop in new photos, drag them into order, then publish. Everything else on the website stays locked.</p>
       </div>
       <a href="/" target="_blank" rel="noreferrer">View Site</a>
     </header>
@@ -30,8 +30,13 @@
         <div class="gallery-panel-heading">
           <div>
             <h2>Gallery Photos</h2>
-            <p>Add new photos at the top. Use Move Up and Move Down to change the order.</p>
+            <p>Drag photos to rearrange them. Click a photo to edit its description, replace it, or remove it.</p>
           </div>
+        </div>
+        <div id="gallery-uploader" class="gallery-uploader">
+          <strong>Add Photos</strong>
+          <span>Drag photos here or choose files from your computer.</span>
+          <input id="gallery-upload-input" type="file" accept="image/*" multiple />
         </div>
         <div id="gallery-fields" class="gallery-list"></div>
       </section>
