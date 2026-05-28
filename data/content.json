@@ -47,113 +47,140 @@
   "images": {
     "heroMain": {
       "src": "images/img/newHeroBunny.jpg",
-      "alt": "Children playing at Cottontail Childcare in Springboro, Ohio daycare"
+      "alt": "Children playing at Cottontail Childcare in Springboro, Ohio daycare",
+      "thumb": "images/admin-thumbs/img-newherobunny-jpg.jpg"
     },
     "benefit1": {
       "src": "images/img/471551931_3860821177462826_7761613357307769831_n.JPEG",
-      "alt": "Small class size at Cottontail Childcare in Springboro"
+      "alt": "Small class size at Cottontail Childcare in Springboro",
+      "thumb": "images/admin-thumbs/img-471551931-3860821177462826-7761613357307769831-n-jpeg.jpg"
     },
     "benefit2": {
       "src": "images/img/Kid4-card.jpg",
-      "alt": "Creative learning space in our Springboro childcare center"
+      "alt": "Creative learning space in our Springboro childcare center",
+      "thumb": "images/admin-thumbs/img-kid4-card-jpg.jpg"
     },
     "benefit3": {
       "src": "images/img/IMG_4082.jpeg",
-      "alt": "Home-like atmosphere at Cottontail daycare near Dayton"
+      "alt": "Home-like atmosphere at Cottontail daycare near Dayton",
+      "thumb": "images/admin-thumbs/img-img-4082-jpeg.jpg"
     },
     "benefit4": {
       "src": "images/img/Leni In CottontailHoodie (1).jpeg",
-      "alt": "Affordable childcare option in Springboro"
+      "alt": "Affordable childcare option in Springboro",
+      "thumb": "images/admin-thumbs/img-leni-in-cottontailhoodie-1-jpeg.jpg"
     }
   },
   "gallery": [
     {
       "src": "images/gallery-processed/gallery-01.jpg",
-      "alt": "Outdoor play area with slide, ride-on toys, and artificial turf at Cottontail"
+      "alt": "Outdoor play area with slide, ride-on toys, and artificial turf at Cottontail",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-01-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-02.jpg",
-      "alt": "Children's books displayed in the reading area"
+      "alt": "Children's books displayed in the reading area",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-02-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-03.jpg",
-      "alt": "Children smiling while reading books near a sunny window"
+      "alt": "Children smiling while reading books near a sunny window",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-03-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-04.jpg",
-      "alt": "Children holding colorful rainbow paintings"
+      "alt": "Children holding colorful rainbow paintings",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-04-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-05.jpg",
-      "alt": "Children playing with wooden blocks on a colorful rug"
+      "alt": "Children playing with wooden blocks on a colorful rug",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-05-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-06.jpg",
-      "alt": "Children peeking out of a playhouse window"
+      "alt": "Children peeking out of a playhouse window",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-06-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-07.jpg",
-      "alt": "Children working on counting worksheets at a table"
+      "alt": "Children working on counting worksheets at a table",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-07-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-08.jpg",
-      "alt": "Child smiling while wearing play glasses in the classroom"
+      "alt": "Child smiling while wearing play glasses in the classroom",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-08-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-09.jpg",
-      "alt": "Child playing pretend bakery with toy treats and a register"
+      "alt": "Child playing pretend bakery with toy treats and a register",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-09-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-10.jpg",
-      "alt": "Children playing together in a ball pit"
+      "alt": "Children playing together in a ball pit",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-10-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-11.jpg",
-      "alt": "Children playing outside on a blue slide"
+      "alt": "Children playing outside on a blue slide",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-11-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-12.jpg",
-      "alt": "Child smiling outdoors near flowers and shrubs"
+      "alt": "Child smiling outdoors near flowers and shrubs",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-12-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-13.jpg",
-      "alt": "Children taking turns on the outdoor slide"
+      "alt": "Children taking turns on the outdoor slide",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-13-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-14.jpg",
-      "alt": "Children enjoying the outdoor play space with slide and rocker toys"
+      "alt": "Children enjoying the outdoor play space with slide and rocker toys",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-14-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-15.jpg",
-      "alt": "Two children smiling and holding hands"
+      "alt": "Two children smiling and holding hands",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-15-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-16.jpg",
-      "alt": "Children riding toys on the outdoor patio near alphabet letters"
+      "alt": "Children riding toys on the outdoor patio near alphabet letters",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-16-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-17.jpg",
-      "alt": "Children standing on a classroom rug holding stuffed animals"
+      "alt": "Children standing on a classroom rug holding stuffed animals",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-17-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-18.jpg",
-      "alt": "Child smiling with a giraffe puppet in the play kitchen area"
+      "alt": "Child smiling with a giraffe puppet in the play kitchen area",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-18-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-19.jpg",
-      "alt": "Child playing with toy animals in the classroom"
+      "alt": "Child playing with toy animals in the classroom",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-19-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-20.jpg",
-      "alt": "Child practicing a letter activity on a touchscreen"
+      "alt": "Child practicing a letter activity on a touchscreen",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-20-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-21.jpg",
-      "alt": "Child holding a Cookie Monster book in the reading area"
+      "alt": "Child holding a Cookie Monster book in the reading area",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-21-jpg.jpg"
     },
     {
       "src": "images/gallery-processed/gallery-22.jpg",
-      "alt": "Wide view of the bright Cottontail classroom and play area"
+      "alt": "Wide view of the bright Cottontail classroom and play area",
+      "thumb": "images/admin-thumbs/gallery-processed-gallery-22-jpg.jpg"
     }
   ]
 }

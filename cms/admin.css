@@ -194,6 +194,18 @@ section,
   margin-top: 4px;
 }
 
+.priority-panel {
+  border-color: rgba(244, 139, 122, 0.34);
+}
+
+.priority-panel summary strong {
+  font-size: 1.55rem;
+}
+
+.priority-panel[open] {
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+}
+
 .intro-panel > p {
   margin-top: 7px;
 }
@@ -389,7 +401,7 @@ textarea {
 }
 
 .image-card {
-  grid-template-columns: 190px minmax(0, 1fr);
+  grid-template-columns: 220px minmax(0, 1fr);
 }
 
 .image-card img,
@@ -408,7 +420,7 @@ textarea {
 }
 
 .gallery-item {
-  grid-template-columns: 140px minmax(0, 1fr) auto;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
 }
 
 .section-heading,

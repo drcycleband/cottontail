@@ -150,11 +150,78 @@ const makeElement = (tag, className, textContent) => {
   return element;
 };
 
+const imagePreviewSrc = item => item?.thumb || item?.src || "";
+
 const prepPreviewImage = (image, src, alt = "") => {
   image.loading = "lazy";
   image.decoding = "async";
   image.src = src || "";
   image.alt = alt;
+};
+
+const resizeImage = (file, maxSize, quality, label) => new Promise((resolve, reject) => {
+  if (!file.type.startsWith("image/") || file.type === "image/gif" || file.type === "image/svg+xml") {
+    resolve(file);
+    return;
+  }
+
+  const image = new Image();
+  const url = URL.createObjectURL(file);
+
+  image.onload = () => {
+    URL.revokeObjectURL(url);
+
+    const scale = Math.min(1, maxSize / Math.max(image.naturalWidth, image.naturalHeight));
+    const width = Math.max(1, Math.round(image.naturalWidth * scale));
+    const height = Math.max(1, Math.round(image.naturalHeight * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d");
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, width, height);
+    context.drawImage(image, 0, 0, width, height);
+
+    canvas.toBlob(blob => {
+      if (!blob) {
+        reject(new Error("Could not resize the selected photo."));
+        return;
+      }
+
+      const baseName = file.name.replace(/\.[^.]+$/, "") || "photo";
+      resolve(new File([blob], `${baseName}-${label}.jpg`, { type: "image/jpeg" }));
+    }, "image/jpeg", quality);
+  };
+
+  image.onerror = () => {
+    URL.revokeObjectURL(url);
+    reject(new Error("Could not read the selected photo."));
+  };
+
+  image.src = url;
+});
+
+const uploadPhotoSet = async file => {
+  try {
+    const fullImage = await resizeImage(file, 1800, 0.86, "site");
+    const thumbImage = await resizeImage(file, 520, 0.76, "thumb");
+    const [fullUpload, thumbUpload] = await Promise.all([
+      uploadImage(fullImage),
+      uploadImage(thumbImage)
+    ]);
+
+    return {
+      path: fullUpload.path,
+      thumb: thumbUpload.path
+    };
+  } catch (error) {
+    const fallback = await uploadImage(file);
+    return {
+      path: fallback.path,
+      thumb: fallback.path
+    };
+  }
 };
 
 const uploadImage = async file => {
@@ -192,8 +259,8 @@ const imageUploadControl = onUploaded => {
     }
 
     try {
-      setStatus("Uploading photo...");
-      const uploaded = await uploadImage(file);
+      setStatus("Optimizing and uploading photo...");
+      const uploaded = await uploadPhotoSet(file);
       onUploaded(uploaded);
       setStatus("Photo uploaded. Click Save Changes when you are done.");
     } catch (error) {
@@ -235,7 +302,7 @@ const previewSimple = section => {
 const previewHero = () => {
   const wrap = makeElement("div", "site-preview hero-preview");
   const image = document.createElement("img");
-  prepPreviewImage(image, content.images.heroMain?.src, "");
+  prepPreviewImage(image, imagePreviewSrc(content.images.heroMain), "");
 
   const copy = makeElement("div", "hero-preview-copy");
   copy.append(
@@ -261,7 +328,7 @@ const previewPrograms = () => {
   for (let index = 1; index <= 4; index += 1) {
     const card = makeElement("div", "preview-card");
     const image = document.createElement("img");
-    prepPreviewImage(image, content.images[`benefit${index}`]?.src, "");
+    prepPreviewImage(image, imagePreviewSrc(content.images[`benefit${index}`]), "");
     card.append(
       image,
       makeElement("strong", "", text(`benefit${index}Title`)),
@@ -341,7 +408,7 @@ const renderImageFields = () => {
     const card = makeElement("article", "image-card");
 
     const preview = document.createElement("img");
-    prepPreviewImage(preview, image.src, image.alt || "");
+    prepPreviewImage(preview, imagePreviewSrc(image), image.alt || "");
 
     const fields = makeElement("div", "image-fields");
     fields.appendChild(makeElement("h3", "", labelText));
@@ -359,8 +426,8 @@ const renderImageFields = () => {
 
     const path = makeElement("p", "photo-path", image.src || "No photo selected");
     const upload = imageUploadControl(uploaded => {
-      content.images[key] = { src: uploaded.path, alt: altInput.value };
-      preview.src = uploaded.path;
+      content.images[key] = { src: uploaded.path, thumb: uploaded.thumb, alt: altInput.value };
+      preview.src = uploaded.thumb || uploaded.path;
       path.textContent = uploaded.path;
       renderSections();
     });
@@ -378,7 +445,7 @@ const renderGalleryFields = () => {
     const row = makeElement("article", "gallery-item");
     const preview = document.createElement("img");
     preview.className = "gallery-preview";
-    prepPreviewImage(preview, item.src, item.alt || "");
+    prepPreviewImage(preview, imagePreviewSrc(item), item.alt || "");
 
     const fields = makeElement("div", "gallery-copy");
     fields.appendChild(makeElement("h3", "", `Gallery Photo ${index + 1}`));
@@ -397,7 +464,8 @@ const renderGalleryFields = () => {
     const path = makeElement("p", "photo-path", item.src || "No photo selected");
     const upload = imageUploadControl(uploaded => {
       item.src = uploaded.path;
-      preview.src = uploaded.path;
+      item.thumb = uploaded.thumb;
+      preview.src = uploaded.thumb || uploaded.path;
       path.textContent = uploaded.path;
     });
 

@@ -12,7 +12,7 @@
       <div>
         <p class="eyebrow">Cottontail CMS</p>
         <h1>Easy Site Editor</h1>
-        <p class="header-note">Edit the words and photos families see on the website. The layout stays locked.</p>
+        <p class="header-note">Swap photos first, then adjust words when needed. The layout stays locked.</p>
       </div>
       <a href="/" target="_blank" rel="noreferrer">View Site</a>
     </header>
@@ -26,27 +26,21 @@
         </div>
       </section>
 
-      <section class="intro-panel">
-        <h2>Edit Page Sections</h2>
-        <p>Each block below is a small preview of part of the website. Save Draft stores edits on this Mac, and Publish Website pushes them live.</p>
-        <div id="section-fields" class="section-list"></div>
-      </section>
-
-      <details class="media-panel" id="main-photos-panel">
+      <details class="media-panel priority-panel" id="main-photos-panel" open>
         <summary>
           <span>
             <strong>Main Photos</strong>
-            <small>Open when you want to swap the larger photos used around the page.</small>
+            <small>Swap the larger photos used around the page.</small>
           </span>
         </summary>
         <div id="image-fields" class="image-grid"></div>
       </details>
 
-      <details class="media-panel" id="gallery-panel">
+      <details class="media-panel priority-panel" id="gallery-panel" open>
         <summary>
           <span>
             <strong>Gallery Photos</strong>
-            <small>Open when you want to add, remove, or reorder gallery photos.</small>
+            <small>Add, remove, or reorder gallery photos.</small>
           </span>
         </summary>
         <div class="section-heading">
@@ -54,6 +48,12 @@
         </div>
         <div id="gallery-fields" class="gallery-list"></div>
       </details>
+
+      <section class="intro-panel">
+        <h2>Edit Page Text</h2>
+        <p>Each block below is a small preview of part of the website. Save Draft stores edits on this Mac, and Publish Website pushes them live.</p>
+        <div id="section-fields" class="section-list"></div>
+      </section>
     </main>
   </body>
 </html>
