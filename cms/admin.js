@@ -441,6 +441,50 @@ const renderImageFields = () => {
 const renderGalleryFields = () => {
   galleryFields.innerHTML = "";
 
+  const addCard = makeElement("article", "gallery-add-card");
+  const addCopy = makeElement("div", "gallery-copy");
+  addCopy.append(
+    makeElement("h3", "", "Add New Gallery Photo"),
+    makeElement("p", "photo-path", "Choose a photo and it will be optimized for the website automatically.")
+  );
+
+  const addInput = document.createElement("input");
+  addInput.type = "file";
+  addInput.accept = "image/*";
+
+  const addButton = document.createElement("button");
+  addButton.type = "button";
+  addButton.className = "publish";
+  addButton.textContent = "Upload To Gallery";
+  addButton.addEventListener("click", async () => {
+    const file = addInput.files && addInput.files[0];
+    if (!file) {
+      setStatus("Choose a gallery photo first.");
+      return;
+    }
+
+    try {
+      addButton.disabled = true;
+      setStatus("Optimizing and uploading new gallery photo...");
+      const uploaded = await uploadPhotoSet(file);
+      content.gallery.unshift({
+        src: uploaded.path,
+        thumb: uploaded.thumb,
+        alt: "Cottontail Childcare photo"
+      });
+      renderGalleryFields();
+      galleryFieldsRendered = true;
+      setStatus("Gallery photo added. Add a description, then Save Draft.");
+    } catch (error) {
+      setStatus(error.message || "Could not add gallery photo.");
+    } finally {
+      addButton.disabled = false;
+    }
+  });
+
+  addCard.append(addCopy, addInput, addButton);
+  galleryFields.appendChild(addCard);
+
   content.gallery.forEach((item, index) => {
     const row = makeElement("article", "gallery-item");
     const preview = document.createElement("img");

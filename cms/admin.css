@@ -392,7 +392,8 @@ textarea {
 }
 
 .image-card,
-.gallery-item {
+.gallery-item,
+.gallery-add-card {
   border: 1px solid var(--border);
   border-radius: 8px;
   display: grid;
@@ -421,6 +422,13 @@ textarea {
 
 .gallery-item {
   grid-template-columns: 180px minmax(0, 1fr) auto;
+}
+
+.gallery-add-card {
+  align-items: center;
+  background: #f4fbf7;
+  border-color: rgba(29, 122, 85, 0.28);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.7fr) auto;
 }
 
 .section-heading,
@@ -457,7 +465,8 @@ textarea {
 @media (max-width: 880px) {
   .editor-section,
   .image-card,
-  .gallery-item {
+  .gallery-item,
+  .gallery-add-card {
     grid-template-columns: 1fr;
   }
 
