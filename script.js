@@ -1,5 +1,5 @@
 // script.js
-document.addEventListener("DOMContentLoaded", () => {
+const initSite = () => {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
   const carousel = document.querySelector("[data-carousel]");
@@ -40,7 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (carousel) {
+  if (carousel && !carousel.dataset.carouselReady) {
+    carousel.dataset.carouselReady = "true";
     const track = carousel.querySelector(".gallery-track");
     const slides = Array.from(carousel.querySelectorAll(".gallery-slide"));
     const prevButton = carousel.querySelector("[data-carousel-prev]");
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let autoScrollTimer;
 
     const updateCarousel = () => {
+      if (!track || slides.length === 0) return;
       track.style.transform = `translateX(-${currentSlide * 100}%)`;
 
       if (status) {
@@ -60,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const showSlide = direction => {
+      if (slides.length === 0) return;
       currentSlide = (currentSlide + direction + slides.length) % slides.length;
       updateCarousel();
     };
@@ -82,15 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
       startAutoScroll();
     };
 
-    prevButton.addEventListener("click", () => {
-      showSlide(-1);
-      restartAutoScroll();
-    });
+    if (prevButton) {
+      prevButton.addEventListener("click", () => {
+        showSlide(-1);
+        restartAutoScroll();
+      });
+    }
 
-    nextButton.addEventListener("click", () => {
-      showSlide(1);
-      restartAutoScroll();
-    });
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        showSlide(1);
+        restartAutoScroll();
+      });
+    }
 
     carousel.addEventListener("keydown", event => {
       if (event.key === "ArrowLeft") {
@@ -120,4 +127,17 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCarousel();
     startAutoScroll();
   }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  let initialized = false;
+
+  const runOnce = () => {
+    if (initialized) return;
+    initialized = true;
+    initSite();
+  };
+
+  window.addEventListener("cms:ready", runOnce, { once: true });
+  window.setTimeout(runOnce, 1500);
 });

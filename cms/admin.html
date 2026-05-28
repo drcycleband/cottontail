@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cottontail Site Editor</title>
+    <link rel="stylesheet" href="admin.css" />
+    <script defer src="admin.js"></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <div>
+        <p class="eyebrow">Cottontail CMS</p>
+        <h1>Easy Site Editor</h1>
+        <p class="header-note">Edit the words and photos families see on the website. The layout stays locked.</p>
+      </div>
+      <a href="/" target="_blank" rel="noreferrer">View Site</a>
+    </header>
+
+    <main>
+      <section class="status-panel" aria-live="polite">
+        <span id="status">Loading content...</span>
+        <div class="status-actions">
+          <button type="button" id="save-button">Save Draft</button>
+          <button type="button" id="publish-button" class="publish">Publish Website</button>
+        </div>
+      </section>
+
+      <section class="intro-panel">
+        <h2>Edit Page Sections</h2>
+        <p>Each block below is a small preview of part of the website. Save Draft stores edits on this Mac, and Publish Website pushes them live.</p>
+        <div id="section-fields" class="section-list"></div>
+      </section>
+
+      <section>
+        <h2>Main Photos</h2>
+        <p class="section-help">These are the larger photos used around the page.</p>
+        <div id="image-fields" class="image-grid"></div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div>
+            <h2>Gallery Photos</h2>
+            <p class="section-help">Add, remove, or reorder the photos in the gallery carousel.</p>
+          </div>
+          <button type="button" id="add-gallery-photo">Add Photo</button>
+        </div>
+        <div id="gallery-fields" class="gallery-list"></div>
+      </section>
+    </main>
+  </body>
+</html>

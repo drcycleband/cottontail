@@ -128,6 +128,7 @@
     <link rel="preload" href="images/img/newHeroBunny.jpg" as="image" />
 
     <!-- JavaScript -->
+    <script defer src="cms-site.js"></script>
     <script defer src="script.js"></script>
   </head>
 
@@ -182,6 +183,7 @@
             src="images/img/newHeroBunny.jpg"
             alt="Children playing at Cottontail Childcare in Springboro, Ohio daycare"
             class="hero-image"
+            data-cms-image="heroMain"
             width="2000"
             height="902"
           />
@@ -200,15 +202,15 @@
         </div>
       </div>
       <div class="hero-text-overlay">
-        <p class="eyebrow">Private Preschool &amp; Childcare in Springboro, OH</p>
-        <h1>Where Little Learners Grow with Confidence</h1>
-        <p class="hero-lead">
+        <p class="eyebrow" data-cms-text="heroEyebrow">Private Preschool &amp; Childcare in Springboro, OH</p>
+        <h1 data-cms-text="heroTitle">Where Little Learners Grow with Confidence</h1>
+        <p class="hero-lead" data-cms-text="heroLead">
           A nurturing, structured preschool experience in a warm, home-like setting where every child is known, supported, and prepared for what comes next.
         </p>
         <div class="hero-highlights" aria-label="Program highlights">
-          <span>👧👦 Ages 2-5</span>
-          <span>✨ Now accepting children as young as 20 months if ready</span>
-          <span>✔️ Only 6 children enrolled</span>
+          <span data-cms-text="heroHighlight1">Ages 2-5</span>
+          <span data-cms-text="heroHighlight2">Now accepting children as young as 20 months if ready</span>
+          <span data-cms-text="heroHighlight3">Only 6 children enrolled</span>
         </div>
         <div class="hero-cta-group">
           <a
@@ -229,9 +231,9 @@
     <!-- Enroll Section -->
     <section class="section intro-section">
       <div class="intro-card">
-        <p class="section-kicker">Looking for a nurturing place where your child will truly learn, grow, and thrive?</p>
-        <h2 class="enroll-title">Small, Structured Preschool Care With Big Heart</h2>
-        <p>
+        <p class="section-kicker" data-cms-text="introKicker">Looking for a nurturing place where your child will truly learn, grow, and thrive?</p>
+        <h2 class="enroll-title" data-cms-text="introTitle">Small, Structured Preschool Care With Big Heart</h2>
+        <p data-cms-text="introBody">
           At Cottontail Childcare &amp; Education, we offer a small, structured preschool experience in a warm, home-like setting so every child gets the attention they deserve.
         </p>
         <div class="intro-checks">
@@ -249,9 +251,9 @@
 
     <!-- Our Programs Section -->
     <section id="programs" class="section programs-section">
-      <p class="section-kicker">Why Families Choose Cottontail</p>
-      <h2>Real Preschool Learning in a Calm, Caring Setting</h2>
-      <p>
+      <p class="section-kicker" data-cms-text="programsKicker">Why Families Choose Cottontail</p>
+      <h2 data-cms-text="programsTitle">Real Preschool Learning in a Calm, Caring Setting</h2>
+      <p data-cms-text="programsBody">
         Your child receives more than supervision here. Each day blends structured preschool learning, social-emotional growth, and individualized support so children build confidence while preparing for kindergarten.
       </p>
 
@@ -261,44 +263,48 @@
             src="images/img/471551931_3860821177462826_7761613357307769831_n.JPEG"
             alt="Small class size at Cottontail Childcare in Springboro"
             loading="lazy"
+            data-cms-image="benefit1"
             width="300"
             height="200"
           />
-          <h3>Small Class Size = Big Attention</h3>
-          <p>With a maximum of 6 children, each child receives individual support, more learning time, and stronger confidence.</p>
+          <h3 data-cms-text="benefit1Title">Small Class Size = Big Attention</h3>
+          <p data-cms-text="benefit1Body">With a maximum of 6 children, each child receives individual support, more learning time, and stronger confidence.</p>
         </div>
         <div class="benefit">
           <img
             src="images/img/Kid4-card.jpg"
             alt="Creative learning space in our Springboro childcare center"
             loading="lazy"
+            data-cms-image="benefit2"
             width="300"
             height="200"
           />
-          <h3>Real Preschool Learning</h3>
-          <p>Children work on letter sounds, early reading, writing, name tracing, counting, numbers, and early math in age-appropriate ways.</p>
+          <h3 data-cms-text="benefit2Title">Real Preschool Learning</h3>
+          <p data-cms-text="benefit2Body">Children work on letter sounds, early reading, writing, name tracing, counting, numbers, and early math in age-appropriate ways.</p>
         </div>
         <div class="benefit">
           <img
             src="images/img/IMG_4082.jpeg"
             alt="Home-like atmosphere at Cottontail daycare near Dayton"
             loading="lazy"
+            data-cms-image="benefit3"
             width="300"
             height="200"
           />
-          <h3>Clean, Safe, Home-Like Environment</h3>
-          <p>Children thrive in calm routines, organized learning spaces, and a setting focused on safety, health, and kindness.</p>
+          <h3 data-cms-text="benefit3Title">Clean, Safe, Home-Like Environment</h3>
+          <p data-cms-text="benefit3Body">Children thrive in calm routines, organized learning spaces, and a setting focused on safety, health, and kindness.</p>
         </div>
         <div class="benefit">
           <img
             src="images/img/Leni In CottontailHoodie (1).jpeg"
             alt="Affordable childcare option in Springboro"
             loading="lazy"
+            data-cms-image="benefit4"
             width="300"
             height="200"
           />
-          <h3>Daily Updates for Parents</h3>
-          <p>Families receive photos, learning updates, and daily highlights so they stay connected to each child's day.</p>
+          <h3 data-cms-text="benefit4Title">Daily Updates for Parents</h3>
+          <p data-cms-text="benefit4Body">Families receive photos, learning updates, and daily highlights so they stay connected to each child's day.</p>
         </div>
       </div>
 
@@ -332,17 +338,17 @@
 
     <!-- Our Space Section -->
     <section id="our-space" class="section space-section">
-      <h2>A Bright Space for Learning and Play</h2>
-      <p>
+      <h2 data-cms-text="spaceTitle">A Bright Space for Learning and Play</h2>
+      <p data-cms-text="spaceBody">
         Cottontail is designed to feel calm, clean, and inviting, with room for reading, creative play, preschool activities, and small-group learning.
       </p>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section gallery-section" aria-labelledby="gallery-title">
-      <p class="section-kicker">More Photos</p>
-      <h2 id="gallery-title">A Peek Inside Cottontail Days</h2>
-      <p>
+      <p class="section-kicker" data-cms-text="galleryKicker">More Photos</p>
+      <h2 id="gallery-title" data-cms-text="galleryTitle">A Peek Inside Cottontail Days</h2>
+      <p data-cms-text="galleryBody">
         From reading and preschool activities to creative play and outdoor time, these moments show the kind of warm, engaged days children enjoy here.
       </p>
 
@@ -351,7 +357,7 @@
           &lsaquo;
         </button>
         <div class="gallery-viewport" aria-live="polite">
-          <div class="gallery-track">
+          <div class="gallery-track" data-cms-gallery>
             <figure class="gallery-slide">
               <img src="images/gallery-processed/gallery-01.jpg" alt="Outdoor play area with slide, ride-on toys, and artificial turf at Cottontail" />
             </figure>
@@ -429,29 +435,29 @@
 
     <!-- About Us Section -->
     <section id="why-cottontail" class="section trust-section">
-      <p class="section-kicker">Trusted Care</p>
-      <h2>Experienced, Trusted Teacher</h2>
+      <p class="section-kicker" data-cms-text="trustKicker">Trusted Care</p>
+      <h2 data-cms-text="trustTitle">Experienced, Trusted Teacher</h2>
       <div class="trust-points">
         <div>
-          <h3>Pre-K Teacher Experience</h3>
-          <p>Children benefit from guidance shaped by real classroom experience and a clear understanding of kindergarten readiness.</p>
+          <h3 data-cms-text="trust1Title">Pre-K Teacher Experience</h3>
+          <p data-cms-text="trust1Body">Children benefit from guidance shaped by real classroom experience and a clear understanding of kindergarten readiness.</p>
         </div>
         <div>
-          <h3>Safety &amp; Peace of Mind</h3>
-          <p>CPR and First Aid certified, background checked, and committed to a safe, steady environment families can trust.</p>
+          <h3 data-cms-text="trust2Title">Safety &amp; Peace of Mind</h3>
+          <p data-cms-text="trust2Body">CPR and First Aid certified, background checked, and committed to a safe, steady environment families can trust.</p>
         </div>
         <div>
-          <h3>Care That Feels Personal</h3>
-          <p>As a mother of two, the care here is rooted in connection, patience, and the kind of attention every child deserves.</p>
+          <h3 data-cms-text="trust3Title">Care That Feels Personal</h3>
+          <p data-cms-text="trust3Body">As a mother of two, the care here is rooted in connection, patience, and the kind of attention every child deserves.</p>
         </div>
       </div>
     </section>
 
     <!-- About Us Section -->
     <section id="about-us" class="section about-section">
-      <p class="section-kicker">Our Mission</p>
-      <h2>A Place Where Children Feel Safe, Loved, and Excited to Learn</h2>
-      <p>
+      <p class="section-kicker" data-cms-text="aboutKicker">Our Mission</p>
+      <h2 data-cms-text="aboutTitle">A Place Where Children Feel Safe, Loved, and Excited to Learn</h2>
+      <p data-cms-text="aboutBody1">
         At Cottontail Childcare &amp; Education, we create a place where children feel safe, loved, and excited to learn. Our days are intentionally balanced so children keep growing academically, socially, and emotionally.
       </p>
       <div class="mission-pillars" aria-label="Mission pillars">
@@ -459,7 +465,7 @@
         <div>✔️ Play + creativity</div>
         <div>✔️ Care + connection</div>
       </div>
-      <p>
+      <p data-cms-text="aboutBody2">
         The goal is simple: every child leaves feeling more confident, more capable, and more ready for kindergarten.
       </p>
     </section>
@@ -467,9 +473,9 @@
     <!-- Pricing Section -->
     <section id="pricing" class="section pricing-section">
       <div class="pricing-card">
-        <p class="section-kicker">Simple Pricing</p>
-        <h2>Full-Time Care: $260/week</h2>
-        <p>One straightforward weekly rate for families who want a small-group setting with personalized attention and real preschool learning.</p>
+        <p class="section-kicker" data-cms-text="pricingKicker">Simple Pricing</p>
+        <h2 data-cms-text="pricingTitle">Full-Time Care: $260/week</h2>
+        <p data-cms-text="pricingBody">One straightforward weekly rate for families who want a small-group setting with personalized attention and real preschool learning.</p>
         <div class="pricing-highlights">
           <span>✔️ Small group</span>
           <span>✔️ Personalized attention</span>
@@ -487,9 +493,9 @@
 
     <!-- CTA Section -->
     <section class="section cta-banner">
-      <p class="availability-label">Very Limited Enrollment</p>
-      <h2>Schedule a Tour Before Spots Fill</h2>
-      <p>We only accept 6 children. Once spots are filled, enrollment closes.</p>
+      <p class="availability-label" data-cms-text="ctaKicker">Very Limited Enrollment</p>
+      <h2 data-cms-text="ctaTitle">Schedule a Tour Before Spots Fill</h2>
+      <p data-cms-text="ctaBody">We only accept 6 children. Once spots are filled, enrollment closes.</p>
       <div class="hero-cta-group">
         <a
           href="https://www.himama.com/online_registration/apply/cottontail-childcare-education"
