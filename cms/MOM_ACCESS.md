@@ -7,7 +7,7 @@ The editor is hosted privately on the Ubuntu VM through Tailscale.
 Try this first:
 
 ```text
-https://ubuntu-server.tail2e0ef9.ts.net/
+https://ubuntu-server.tail2e0ef9.ts.net/admin.html
 ```
 
 If that does not load, use the Tailscale IP:
