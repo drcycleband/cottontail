@@ -194,7 +194,7 @@ section {
 .gallery-list {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
 }
 
 .gallery-item {
@@ -260,8 +260,8 @@ section {
 
 .gallery-details-body {
   display: grid;
-  gap: 10px;
-  padding-top: 10px;
+  gap: 12px;
+  padding-top: 12px;
 }
 
 .edit-field {
@@ -298,6 +298,11 @@ textarea {
   width: 100%;
 }
 
+textarea {
+  min-height: 78px;
+  resize: vertical;
+}
+
 input:focus,
 textarea:focus {
   border-color: var(--primary);
@@ -308,28 +313,45 @@ textarea:focus {
 .gallery-actions {
   display: grid;
   gap: 8px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .gallery-actions button {
+  min-width: 0;
   padding: 10px 8px;
 }
 
+.gallery-actions .danger {
+  grid-column: 1 / -1;
+}
+
+.replace-details summary {
+  background: #f2f6fa;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--primary);
+  font-weight: 800;
+  list-style: none;
+  padding: 10px;
+}
+
+.replace-details summary::-webkit-details-marker {
+  display: none;
+}
+
 .upload-row {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
+  padding-top: 10px;
 }
 
 .upload-row input {
-  flex: 1;
-  min-width: 180px;
+  min-width: 0;
 }
 
 @media (max-width: 880px) {
   .gallery-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
   }
 }
 

@@ -159,7 +159,8 @@ const createGalleryItem = (item, index) => {
 
   const altLabel = makeElement("label", "edit-field");
   altLabel.appendChild(makeElement("span", "field-label", "Photo description"));
-  const altInput = document.createElement("input");
+  const altInput = document.createElement("textarea");
+  altInput.rows = 2;
   altInput.value = item.alt || "";
   altInput.addEventListener("input", () => {
     item.alt = altInput.value;
@@ -168,6 +169,8 @@ const createGalleryItem = (item, index) => {
   });
   altLabel.appendChild(altInput);
 
+  const replaceDetails = makeElement("details", "replace-details");
+  const replaceSummary = makeElement("summary", "", "Replace Photo");
   const replaceRow = makeElement("div", "upload-row");
   const replaceInput = document.createElement("input");
   replaceInput.type = "file";
@@ -175,7 +178,7 @@ const createGalleryItem = (item, index) => {
   const replaceButton = document.createElement("button");
   replaceButton.type = "button";
   replaceButton.className = "secondary";
-  replaceButton.textContent = "Replace Photo";
+  replaceButton.textContent = "Upload Replacement";
   replaceButton.addEventListener("click", async () => {
     const file = replaceInput.files && replaceInput.files[0];
     if (!file) {
@@ -198,6 +201,7 @@ const createGalleryItem = (item, index) => {
     }
   });
   replaceRow.append(replaceInput, replaceButton);
+  replaceDetails.append(replaceSummary, replaceRow);
 
   const actions = makeElement("div", "gallery-actions");
   const up = document.createElement("button");
@@ -234,7 +238,7 @@ const createGalleryItem = (item, index) => {
   });
 
   actions.append(up, down, remove);
-  detailsBody.append(altLabel, replaceRow, actions);
+  detailsBody.append(altLabel, replaceDetails, actions);
   fields.append(summary, detailsBody);
 
   row.addEventListener("dragstart", event => {
