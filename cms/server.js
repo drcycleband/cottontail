@@ -12,6 +12,7 @@ const contentPath = path.join(root, "data", "content.json");
 const uploadDir = path.join(root, "images", "uploads");
 const port = Number(process.env.PORT || 3131);
 const host = process.env.HOST || "0.0.0.0";
+const adminUsername = process.env.CMS_USERNAME || "";
 const adminPassword = process.env.CMS_PASSWORD || "";
 
 const mimeTypes = {
@@ -61,7 +62,11 @@ const isAuthorized = req => {
   if (!auth.startsWith("Basic ")) return false;
 
   const decoded = Buffer.from(auth.slice(6), "base64").toString("utf8");
-  const password = decoded.split(":").slice(1).join(":");
+  const separator = decoded.indexOf(":");
+  const username = separator === -1 ? "" : decoded.slice(0, separator);
+  const password = separator === -1 ? "" : decoded.slice(separator + 1);
+  if (adminUsername && username !== adminUsername) return false;
+
   const passwordBuffer = Buffer.from(password);
   const expectedBuffer = Buffer.from(adminPassword);
   return passwordBuffer.length === expectedBuffer.length && crypto.timingSafeEqual(passwordBuffer, expectedBuffer);
@@ -291,5 +296,5 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(port, host, () => {
   console.log(`Cottontail CMS running at http://${host === "0.0.0.0" ? "localhost" : host}:${port}`);
-  console.log("Set CMS_PASSWORD before starting the server to protect the editor.");
+  console.log("Set CMS_USERNAME and CMS_PASSWORD before starting the server to protect the editor.");
 });

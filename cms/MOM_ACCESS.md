@@ -18,9 +18,14 @@ http://100.67.72.20:3131/admin.html
 
 ## Sign In
 
-The username can be anything.
+Use:
 
-Use the CMS password stored on the Ubuntu VM in:
+```text
+Username: kristel
+Password: bunny123
+```
+
+The CMS username and password are stored on the Ubuntu VM in:
 
 ```text
 /home/bryce/.config/cottontail-cms.env

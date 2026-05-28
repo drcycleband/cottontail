@@ -10,7 +10,7 @@ From the repo root:
 
 ```bash
 cd cms
-CMS_PASSWORD="choose-a-real-password" npm start
+CMS_USERNAME="kristel" CMS_PASSWORD="bunny123" npm start
 ```
 
 Then open:
@@ -25,7 +25,7 @@ For the home server, use Tailscale or your local network address:
 http://YOUR-SERVER-ADDRESS:3131/admin.html
 ```
 
-The sign-in username can be anything. The password is whatever you set in `CMS_PASSWORD`.
+The sign-in username and password come from `CMS_USERNAME` and `CMS_PASSWORD`.
 
 ## Publish Button
 
