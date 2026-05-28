@@ -122,7 +122,8 @@ button.publish {
 }
 
 .status-panel,
-section {
+section,
+.media-panel {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -155,6 +156,42 @@ section {
 
 .intro-panel {
   padding: 24px;
+}
+
+.media-panel summary {
+  align-items: center;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 800;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.media-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.media-panel summary::after {
+  background: #e6eef6;
+  border-radius: 999px;
+  color: var(--primary);
+  content: "Open";
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+.media-panel[open] summary::after {
+  content: "Close";
+}
+
+.media-panel small {
+  color: var(--muted);
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 4px;
 }
 
 .intro-panel > p {

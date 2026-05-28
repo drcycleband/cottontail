@@ -130,8 +130,12 @@ const statusElement = document.getElementById("status");
 const sectionFields = document.getElementById("section-fields");
 const imageFields = document.getElementById("image-fields");
 const galleryFields = document.getElementById("gallery-fields");
+const mainPhotosPanel = document.getElementById("main-photos-panel");
+const galleryPanel = document.getElementById("gallery-panel");
 const saveButton = document.getElementById("save-button");
 const publishButton = document.getElementById("publish-button");
+let imageFieldsRendered = false;
+let galleryFieldsRendered = false;
 
 const text = key => content.texts[key] || "";
 
@@ -144,6 +148,13 @@ const makeElement = (tag, className, textContent) => {
   if (className) element.className = className;
   if (textContent) element.textContent = textContent;
   return element;
+};
+
+const prepPreviewImage = (image, src, alt = "") => {
+  image.loading = "lazy";
+  image.decoding = "async";
+  image.src = src || "";
+  image.alt = alt;
 };
 
 const uploadImage = async file => {
@@ -224,8 +235,7 @@ const previewSimple = section => {
 const previewHero = () => {
   const wrap = makeElement("div", "site-preview hero-preview");
   const image = document.createElement("img");
-  image.src = content.images.heroMain?.src || "";
-  image.alt = "";
+  prepPreviewImage(image, content.images.heroMain?.src, "");
 
   const copy = makeElement("div", "hero-preview-copy");
   copy.append(
@@ -251,8 +261,7 @@ const previewPrograms = () => {
   for (let index = 1; index <= 4; index += 1) {
     const card = makeElement("div", "preview-card");
     const image = document.createElement("img");
-    image.src = content.images[`benefit${index}`]?.src || "";
-    image.alt = "";
+    prepPreviewImage(image, content.images[`benefit${index}`]?.src, "");
     card.append(
       image,
       makeElement("strong", "", text(`benefit${index}Title`)),
@@ -332,8 +341,7 @@ const renderImageFields = () => {
     const card = makeElement("article", "image-card");
 
     const preview = document.createElement("img");
-    preview.src = image.src;
-    preview.alt = image.alt || "";
+    prepPreviewImage(preview, image.src, image.alt || "");
 
     const fields = makeElement("div", "image-fields");
     fields.appendChild(makeElement("h3", "", labelText));
@@ -370,8 +378,7 @@ const renderGalleryFields = () => {
     const row = makeElement("article", "gallery-item");
     const preview = document.createElement("img");
     preview.className = "gallery-preview";
-    preview.src = item.src || "";
-    preview.alt = item.alt || "";
+    prepPreviewImage(preview, item.src, item.alt || "");
 
     const fields = makeElement("div", "gallery-copy");
     fields.appendChild(makeElement("h3", "", `Gallery Photo ${index + 1}`));
@@ -437,9 +444,21 @@ const renderGalleryFields = () => {
 
 const render = () => {
   renderSections();
-  renderImageFields();
-  renderGalleryFields();
+  if (mainPhotosPanel.open) renderImageFields();
+  if (galleryPanel.open) renderGalleryFields();
 };
+
+mainPhotosPanel.addEventListener("toggle", () => {
+  if (!mainPhotosPanel.open || imageFieldsRendered) return;
+  renderImageFields();
+  imageFieldsRendered = true;
+});
+
+galleryPanel.addEventListener("toggle", () => {
+  if (!galleryPanel.open || galleryFieldsRendered) return;
+  renderGalleryFields();
+  galleryFieldsRendered = true;
+});
 
 const saveContent = async () => {
   const response = await fetch("/api/content", {
@@ -511,6 +530,7 @@ publishButton.addEventListener("click", async () => {
 document.getElementById("add-gallery-photo").addEventListener("click", () => {
   content.gallery.push({ src: "", alt: "" });
   renderGalleryFields();
+  galleryFieldsRendered = true;
   setStatus("New gallery photo added. Choose a photo, then save.");
 });
 

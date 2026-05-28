@@ -32,22 +32,28 @@
         <div id="section-fields" class="section-list"></div>
       </section>
 
-      <section>
-        <h2>Main Photos</h2>
-        <p class="section-help">These are the larger photos used around the page.</p>
+      <details class="media-panel" id="main-photos-panel">
+        <summary>
+          <span>
+            <strong>Main Photos</strong>
+            <small>Open when you want to swap the larger photos used around the page.</small>
+          </span>
+        </summary>
         <div id="image-fields" class="image-grid"></div>
-      </section>
+      </details>
 
-      <section>
+      <details class="media-panel" id="gallery-panel">
+        <summary>
+          <span>
+            <strong>Gallery Photos</strong>
+            <small>Open when you want to add, remove, or reorder gallery photos.</small>
+          </span>
+        </summary>
         <div class="section-heading">
-          <div>
-            <h2>Gallery Photos</h2>
-            <p class="section-help">Add, remove, or reorder the photos in the gallery carousel.</p>
-          </div>
           <button type="button" id="add-gallery-photo">Add Photo</button>
         </div>
         <div id="gallery-fields" class="gallery-list"></div>
-      </section>
+      </details>
     </main>
   </body>
 </html>
