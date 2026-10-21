@@ -1,7 +1,7 @@
 {
   "texts": {
     "heroEyebrow": "Private Preschool & Childcare in Springboro, OH",
-    "heroTitle": "Where Little Learners Grow with Confidence!",
+    "heroTitle": "Where Little Learners Grow with Confidence",
     "heroLead": "A nurturing, structured preschool experience in a warm, home-like setting where every child is known, supported, and prepared for what comes next.",
     "heroHighlight1": "Ages 2-5",
     "heroHighlight2": "Now accepting children as young as 20 months if ready",
@@ -72,6 +72,11 @@
     }
   },
   "gallery": [
+    {
+      "src": "images/uploads/1792552139000-4aca2e125d.jpg",
+      "thumb": "images/uploads/1792552138674-9c1380bf5e.jpg",
+      "alt": "Cottontail Childcare photo"
+    },
     {
       "src": "images/gallery-processed/gallery-01.jpg",
       "alt": "Outdoor play area with slide, ride-on toys, and artificial turf at Cottontail",
