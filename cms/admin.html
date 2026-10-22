@@ -3,18 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cottontail Gallery Editor</title>
-    <link rel="stylesheet" href="admin.css" />
-    <script defer src="admin.js"></script>
+    <title>Cottontail Website Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css?v=20261022" />
+    <script defer src="admin.js?v=20261022-testimonials"></script>
   </head>
   <body>
     <header class="admin-header">
       <div>
         <p class="eyebrow">Cottontail CMS</p>
-        <h1>Gallery Editor</h1>
-        <p class="header-note">Drop in new photos, drag them into order, then publish. Everything else on the website stays locked.</p>
+        <h1>Your Website Editor</h1>
+        <p class="header-note">Edit your words and photos below. Save a draft, or publish when you’re ready to go live.</p>
       </div>
       <a href="https://cottontailchildcare.com" target="_blank" rel="noreferrer">View Site</a>
+      <form action="/auth/logout" method="post"><button type="submit" class="secondary">Sign out</button></form>
     </header>
 
     <main>
@@ -26,10 +28,24 @@
         </div>
       </section>
 
+      <section class="website-panel">
+        <div class="preview-heading"><h2>Your website</h2><button type="button" id="testimonials-button" class="secondary">Manage testimonials</button><button type="button" id="gallery-button" class="secondary">Manage gallery photos</button></div>
+        <p id="preview-help">Tap outlined words to edit, or tap an outlined photo to replace it. Scroll down to see the rest of your website.</p>
+        <iframe id="website-preview" title="Your website — click outlined text or photos to edit" src="/index.html?preview=1" sandbox="allow-scripts allow-same-origin"></iframe>
+      </section>
+      <dialog id="testimonials-dialog" aria-labelledby="testimonials-heading">
+        <button type="button" id="close-testimonials" class="secondary">Done with testimonials</button>
+        <h2 id="testimonials-heading">Testimonials</h2>
+        <p>Paste a review and add the reviewer’s name. Stars, date, and original review link are optional. Then choose Publish Website to make it live.</p>
+        <button type="button" id="add-testimonial">+ Add testimonial</button>
+        <div id="testimonial-fields"></div>
+      </dialog>
+      <dialog id="gallery-dialog" aria-labelledby="gallery-heading">
+      <button type="button" id="close-gallery" class="secondary">Done with gallery</button>
       <section class="gallery-panel priority-panel">
         <div class="gallery-panel-heading">
           <div>
-            <h2>Gallery Photos</h2>
+            <h2 id="gallery-heading">Gallery Photos</h2>
             <p>Drag photos to rearrange them. Click a photo to edit its description, replace it, or remove it.</p>
           </div>
         </div>
@@ -40,6 +56,7 @@
         </div>
         <div id="gallery-fields" class="gallery-list"></div>
       </section>
+      </dialog>
     </main>
   </body>
 </html>

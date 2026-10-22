@@ -4,6 +4,7 @@ const path = require("path");
 const crypto = require("crypto");
 const { execFile } = require("child_process");
 const { promisify } = require("util");
+const { createPasskeys } = require("./passkeys");
 
 const execFileAsync = promisify(execFile);
 const cmsRoot = __dirname;
@@ -11,9 +12,14 @@ const root = path.resolve(__dirname, "..");
 const contentPath = path.join(root, "data", "content.json");
 const uploadDir = path.join(root, "images", "uploads");
 const port = Number(process.env.PORT || 3131);
-const host = process.env.HOST || "0.0.0.0";
+const host = process.env.HOST || "127.0.0.1";
 const adminUsername = process.env.CMS_USERNAME || "";
 const adminPassword = process.env.CMS_PASSWORD || "";
+
+if (!adminUsername || !adminPassword) {
+  console.error("Set CMS_USERNAME and CMS_PASSWORD before starting the editor.");
+  process.exit(1);
+}
 
 const mimeTypes = {
   ".html": "text/html; charset=utf-8",
@@ -55,30 +61,38 @@ const readBody = req => new Promise((resolve, reject) => {
   req.on("error", reject);
 });
 
+const sessions = new Map();
+const loginAttempts = new Map();
+const sessionLifetime = 12 * 60 * 60 * 1000;
+const cookieName = "cottontail_session";
+const validCredentials = (username, password) => {
+  const actual = crypto.createHash("sha256").update(`${username}\0${password}`).digest();
+  const expected = crypto.createHash("sha256").update(`${adminUsername}\0${adminPassword}`).digest();
+  return crypto.timingSafeEqual(actual, expected);
+};
+const issueSession = req => {
+  const now = Date.now();
+  for (const [token, expires] of sessions) if (expires <= now) sessions.delete(token);
+  const token = crypto.randomBytes(32).toString("hex");
+  sessions.set(token, now + sessionLifetime);
+  const secure = req.socket.encrypted || req.headers["x-forwarded-proto"] === "https";
+  return `${cookieName}=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${sessionLifetime / 1000}${secure ? "; Secure" : ""}`;
+};
+const passkeys = createPasskeys({ send, validPassword: password => validCredentials(adminUsername, password), issueSession });
 const isAuthorized = req => {
-  if (!adminPassword) return true;
-
-  const auth = req.headers.authorization || "";
-  if (!auth.startsWith("Basic ")) return false;
-
-  const decoded = Buffer.from(auth.slice(6), "base64").toString("utf8");
-  const separator = decoded.indexOf(":");
-  const username = separator === -1 ? "" : decoded.slice(0, separator);
-  const password = separator === -1 ? "" : decoded.slice(separator + 1);
-  if (adminUsername && username !== adminUsername) return false;
-
-  const passwordBuffer = Buffer.from(password);
-  const expectedBuffer = Buffer.from(adminPassword);
-  return passwordBuffer.length === expectedBuffer.length && crypto.timingSafeEqual(passwordBuffer, expectedBuffer);
+  const cookie = (req.headers.cookie || "").split(";").map(value => value.trim()).find(value => value.startsWith(`${cookieName}=`));
+  const token = cookie ? cookie.slice(cookieName.length + 1) : "";
+  const expires = sessions.get(token);
+  if (expires > Date.now()) return true;
+  if (expires) sessions.delete(token);
+  return false;
 };
 
 const requireAuth = (req, res) => {
   if (isAuthorized(req)) return true;
 
-  send(res, 401, "Password required.", {
-    "WWW-Authenticate": 'Basic realm="Cottontail CMS"',
-    "Content-Type": "text/plain; charset=utf-8"
-  });
+  if (req.url.startsWith("/api/")) send(res, 401, JSON.stringify({ error: "Please sign in again." }), { "Content-Type": "application/json" });
+  else send(res, 303, "", { Location: "/login" });
   return false;
 };
 
@@ -86,7 +100,8 @@ const safeJson = value => {
   const next = {
     texts: value.texts && typeof value.texts === "object" ? value.texts : {},
     images: value.images && typeof value.images === "object" ? value.images : {},
-    gallery: Array.isArray(value.gallery) ? value.gallery : []
+    gallery: Array.isArray(value.gallery) ? value.gallery : [],
+    testimonials: Array.isArray(value.testimonials) ? value.testimonials : JSON.parse(fs.readFileSync(contentPath, "utf8")).testimonials || []
   };
 
   return JSON.stringify(next, null, 2);
@@ -231,7 +246,10 @@ const serveFile = async (req, res) => {
   if (pathname === "/") pathname = "/index.html";
   const requestedPath = path.normalize(path.join(root, pathname));
 
-  if (!requestedPath.startsWith(root)) {
+  const relativePath = path.relative(root, requestedPath);
+  const publicFiles = new Set(["index.html", "styles.css", "script.js", "cms-site.js", "robots.txt", "sitemap.xml", "data/content.json"]);
+  const assetPath = /^(images|videos)[/\\]/.test(relativePath) && !relativePath.split(path.sep).some(part => part.startsWith("."));
+  if (relativePath.startsWith("..") || path.isAbsolute(relativePath) || (!publicFiles.has(relativePath) && !assetPath)) {
     send(res, 403, "Forbidden", { "Content-Type": "text/plain; charset=utf-8" });
     return;
   }
@@ -253,7 +271,60 @@ const serveFile = async (req, res) => {
 
 const server = http.createServer(async (req, res) => {
   try {
+    res.setHeader("Cache-Control", "no-store");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("X-Frame-Options", "SAMEORIGIN");
+    res.setHeader("Referrer-Policy", "same-origin");
+    const loginUrl = new URL(req.url, "http://localhost");
+    if (await passkeys.handle(req, res, loginUrl)) return;
+    const publicAuthFiles = {
+      "/passkey-setup": path.join(cmsRoot, "passkey-setup.html"),
+      "/passkey-client.js": path.join(cmsRoot, "passkey-client.js"),
+      "/webauthn-browser.js": path.join(cmsRoot, "node_modules/@simplewebauthn/browser/dist/bundle/index.umd.min.js")
+    };
+    if (publicAuthFiles[loginUrl.pathname] && req.method === "GET") {
+      res.setHeader("Referrer-Policy", "no-referrer");
+      return send(res, 200, await fs.promises.readFile(publicAuthFiles[loginUrl.pathname]), { "Content-Type": loginUrl.pathname.endsWith(".js") ? "application/javascript; charset=utf-8" : "text/html; charset=utf-8" });
+    }
+    if ((loginUrl.pathname === "/" || (loginUrl.pathname === "/index.html" && !loginUrl.searchParams.has("preview"))) && ["GET", "HEAD"].includes(req.method)) {
+      return send(res, 303, "", { Location: isAuthorized(req) ? "/admin.html" : "/login" });
+    }
+    if (loginUrl.pathname === "/login" && req.method === "GET") {
+      if (isAuthorized(req)) return send(res, 303, "", { Location: "/admin.html" });
+      return send(res, 200, await fs.promises.readFile(path.join(cmsRoot, "login.html")), { "Content-Type": "text/html; charset=utf-8" });
+    }
+    if (loginUrl.pathname === "/auth/login" && req.method === "POST") {
+      if (!passkeys.passwordAllowed()) return send(res, 403, "A passkey is required. Return to /login and choose Sign in with a passkey.");
+      const origin = req.headers.origin;
+      if (!origin || new URL(origin).host !== req.headers.host) return send(res, 403, "Request origin is not allowed.");
+      // Use the socket address: forwarded headers are not trusted for rate limits.
+      const key = req.socket.remoteAddress;
+      const now = Date.now();
+      for (const [address, attempt] of loginAttempts) if (attempt.until <= now) loginAttempts.delete(address);
+      const attempt = loginAttempts.get(key) || { count: 0, until: now + 15 * 60 * 1000 };
+      if (attempt.count >= 10) return send(res, 429, "Too many sign-in attempts. Please try again in 15 minutes.", { "Retry-After": "900" });
+      attempt.count++;
+      loginAttempts.set(key, attempt);
+      const form = new URLSearchParams((await readBody(req)).toString("utf8"));
+      if (!validCredentials(form.get("username") || "", form.get("password") || "")) return send(res, 303, "", { Location: "/login?error=1" });
+      loginAttempts.delete(key);
+      return send(res, 303, "", { Location: "/admin.html", "Set-Cookie": issueSession(req) });
+    }
+    if (loginUrl.pathname === "/auth/logout" && req.method === "POST") {
+      if (!req.headers.origin || new URL(req.headers.origin).host !== req.headers.host) return send(res, 403, "Request origin is not allowed.");
+      const cookie = (req.headers.cookie || "").split(";").map(value => value.trim()).find(value => value.startsWith(`${cookieName}=`));
+      if (cookie) sessions.delete(cookie.slice(cookieName.length + 1));
+      return send(res, 303, "", { Location: "/login", "Set-Cookie": `${cookieName}=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0` });
+    }
+    if (!requireAuth(req, res)) return;
     const url = new URL(req.url, `http://${req.headers.host}`);
+    if (!["GET", "HEAD"].includes(req.method)) {
+      const origin = req.headers.origin;
+      if (origin && new URL(origin).host !== req.headers.host) {
+        send(res, 403, "Request origin is not allowed.");
+        return;
+      }
+    }
 
     if (url.pathname === "/api/content" && req.method === "GET") {
       if (!requireAuth(req, res)) return;
@@ -296,5 +367,5 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(port, host, () => {
   console.log(`Cottontail CMS running at http://${host === "0.0.0.0" ? "localhost" : host}:${port}`);
-  console.log("Set CMS_USERNAME and CMS_PASSWORD before starting the server to protect the editor.");
+  console.log("Editor login is required. Use an HTTPS reverse proxy for hosted access.");
 });

@@ -7,9 +7,170 @@ const galleryUploadInput = document.getElementById("gallery-upload-input");
 const saveButton = document.getElementById("save-button");
 const publishButton = document.getElementById("publish-button");
 let draggedIndex = null;
+let dirty = false;
+let contentLoaded = false;
+const websitePreview = document.getElementById("website-preview");
+const galleryDialog = document.getElementById("gallery-dialog");
+let previewResizeObserver;
+let previewResizeFrame;
+document.getElementById("gallery-button").addEventListener("click", () => galleryDialog.showModal());
+document.getElementById("close-gallery").addEventListener("click", () => {
+  galleryDialog.close();
+  refreshPreview();
+});
+window.addEventListener("beforeunload", event => {
+  if (!dirty) return;
+  event.preventDefault();
+  event.returnValue = "";
+});
+const refreshPreview = () => { websitePreview.src = "/index.html?preview=" + Date.now(); };
+const preparePreview = () => {
+  if (!contentLoaded) return;
+  const doc = websitePreview.contentDocument;
+  if (!doc || doc.documentElement.dataset.editorReady) return;
+  doc.documentElement.dataset.editorReady = "true";
+  const style = doc.createElement("style");
+  style.textContent = `[data-cms-text], [data-cms-image] { outline: 2px dashed #315c8680; outline-offset: 4px; cursor: pointer; }
+    [contenteditable]:focus { outline: 3px solid #315c86; background: #fff9df; }
+    [data-cms-image]:hover { outline: 3px solid #315c86; }`;
+  doc.head.append(style);
+  // Let the editor page own scrolling instead of nesting a second viewport.
+  const previewStyle = doc.createElement("style");
+  previewStyle.textContent = `html, body { overflow: hidden !important; }
+    .navbar, .skip-link, .back-to-top { display: none !important; }
+    #home { margin-top: 0 !important; }
+    body { padding-bottom: 0 !important; }
+    .gallery-slide img { height: min(520px, 110vw) !important; }
+    [data-cms-text], [data-cms-image] { scroll-margin-top: 140px; }`;
+  doc.head.append(previewStyle);
+  const resizePreview = () => {
+    cancelAnimationFrame(previewResizeFrame);
+    previewResizeFrame = requestAnimationFrame(() => {
+      const height = Math.ceil(doc.body.getBoundingClientRect().height);
+      if (height > 0 && websitePreview.style.height !== `${height}px`) websitePreview.style.height = `${height}px`;
+    });
+  };
+  previewResizeObserver?.disconnect();
+  previewResizeObserver = new ResizeObserver(resizePreview);
+  previewResizeObserver.observe(doc.body);
+  doc.fonts.ready.then(resizePreview);
+  resizePreview();
+  websitePreview.contentWindow.renderTestimonials?.(content.testimonials);
+  doc.querySelectorAll("[data-cms-text]").forEach(element => {
+    const key = element.dataset.cmsText;
+    if (Object.hasOwn(content.texts, key)) element.textContent = content.texts[key];
+    element.contentEditable = "plaintext-only";
+    element.title = "Click to edit these words";
+    element.addEventListener("input", () => {
+      content.texts[key] = element.textContent;
+      setStatus("Unsaved changes. Click Publish Website when you are ready.");
+    });
+    element.addEventListener("paste", event => {
+      event.preventDefault();
+      const text = event.clipboardData.getData("text/plain");
+      const selection = websitePreview.contentWindow.getSelection();
+      if (!selection.rangeCount) return;
+      const range = selection.getRangeAt(0);
+      range.deleteContents();
+      const node = doc.createTextNode(text);
+      range.insertNode(node);
+      range.setStartAfter(node);
+      range.collapse(true);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      element.dispatchEvent(new Event("input"));
+    });
+  });
+  doc.querySelectorAll("[data-cms-image]").forEach(image => {
+    const key = image.dataset.cmsImage;
+    const item = content.images[key];
+    if (item) { image.src = item.src; image.alt = item.alt || ""; }
+    image.title = "Click to replace this photo";
+    image.tabIndex = 0;
+    const choosePhoto = () => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/jpeg,image/png,image/webp,image/gif";
+      input.addEventListener("change", async () => {
+        if (!input.files[0]) return;
+        saveButton.disabled = publishButton.disabled = true;
+        try {
+          setStatus("Uploading replacement photo...");
+          const uploaded = await uploadPhotoSet(input.files[0]);
+          content.images[key] = { src: uploaded.path, thumb: uploaded.thumb, alt: image.alt };
+          image.src = "/" + uploaded.path;
+          setStatus("Unsaved changes. Photo replaced — click Publish Website when ready.");
+        } catch (error) { setStatus(error.message); }
+        finally { saveButton.disabled = publishButton.disabled = false; }
+      });
+      input.click();
+    };
+    image.addEventListener("click", choosePhoto);
+    image.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); choosePhoto(); }
+    });
+  });
+  const gallery = doc.querySelector("[data-cms-gallery]");
+  if (gallery) {
+    gallery.replaceChildren(...content.gallery.map(item => {
+      const figure = doc.createElement("figure");
+      figure.className = "gallery-slide";
+      const image = doc.createElement("img");
+      image.src = item.src; image.alt = item.alt || ""; image.loading = "lazy";
+      figure.append(image);
+      return figure;
+    }));
+    // Reinitialize the site's carousel with the draft's slides.
+    const carousel = doc.querySelector("[data-carousel]");
+    if (carousel) {
+      const replacement = carousel.cloneNode(true);
+      delete replacement.dataset.carouselReady;
+      carousel.replaceWith(replacement);
+      const slides = Array.from(replacement.querySelectorAll(".gallery-slide"));
+      const track = replacement.querySelector(".gallery-track");
+      let position = 0;
+      const show = step => {
+        position = (position + step + slides.length) % slides.length;
+        if (track) track.style.transform = `translateX(-${position * 100}%)`;
+        const counter = doc.querySelector("[data-carousel-status]");
+        if (counter) counter.textContent = `Photo ${position + 1} of ${slides.length}`;
+      };
+      replacement.querySelectorAll("[data-carousel-prev], [data-carousel-next]").forEach(button => {
+        button.disabled = !slides.length;
+        button.addEventListener("click", () => show(button.hasAttribute("data-carousel-next") ? 1 : -1));
+      });
+      if (slides.length) show(0);
+    }
+    const status = doc.querySelector("[data-carousel-status]");
+    if (status && !content.gallery.length) status.textContent = "No gallery photos yet";
+    const gallerySection = doc.getElementById("gallery");
+    if (gallerySection) {
+      const manageButton = doc.createElement("button");
+      manageButton.type = "button";
+      manageButton.textContent = "Manage gallery photos";
+      manageButton.style.cssText = "display:block;margin:20px auto;padding:14px 20px;min-height:48px;border:0;border-radius:8px;background:#315c86;color:white;font:inherit;font-weight:800;cursor:pointer;max-width:100%;";
+      manageButton.addEventListener("click", () => galleryDialog.showModal());
+      const carousel = gallerySection.querySelector("[data-carousel]");
+      if (carousel) carousel.before(manageButton);
+      else gallerySection.append(manageButton);
+    }
+  }
+  doc.addEventListener("click", event => {
+    const link = event.target.closest("a");
+    if (!link) return;
+    event.preventDefault();
+    const href = link.getAttribute("href");
+    if (href?.startsWith("#")) {
+      const target = doc.getElementById(href.slice(1));
+      if (target) window.scrollTo({ top: window.scrollY + websitePreview.getBoundingClientRect().top + target.getBoundingClientRect().top - 140, behavior: "smooth" });
+    }
+  }, true);
+};
+websitePreview.addEventListener("load", preparePreview);
 
 const setStatus = message => {
   statusElement.textContent = message;
+  if (/Unsaved|added|replaced|order changed/i.test(message)) dirty = true;
 };
 
 const makeElement = (tag, className, textContent) => {
@@ -318,7 +479,83 @@ galleryUploader.addEventListener("drop", event => {
   addFilesToGallery(event.dataTransfer.files);
 });
 
+const testimonialsDialog = document.getElementById("testimonials-dialog");
+const testimonialFields = document.getElementById("testimonial-fields");
+document.getElementById("testimonials-button").addEventListener("click", () => testimonialsDialog.showModal());
+document.getElementById("close-testimonials").addEventListener("click", () => testimonialsDialog.close());
+const updateTestimonialPreview = () => {
+  websitePreview.contentWindow.renderTestimonials?.(content.testimonials);
+  setStatus("Unsaved changes. Click Publish Website when you are ready.");
+};
+const renderTestimonialFields = () => {
+  testimonialFields.replaceChildren();
+  content.testimonials.forEach((item, index) => {
+    const row = makeElement("details", "testimonial-editor");
+    const summary = makeElement("summary", "", item.name || "New testimonial");
+    row.append(summary);
+    const field = (labelText, key, type = "text") => {
+      const label = makeElement("label", "", labelText);
+      const input = document.createElement(type === "textarea" ? "textarea" : "input");
+      if (type !== "textarea") input.type = type;
+      else input.rows = 6;
+      input.value = item[key] || "";
+      if (key === "name" || key === "text") input.required = true;
+      input.addEventListener("input", () => {
+        item[key] = input.value;
+        if (key === "name") summary.textContent = input.value || "New testimonial";
+        updateTestimonialPreview();
+      });
+      label.append(input);
+      row.append(label);
+    };
+    field("Reviewer’s name (required)", "name");
+    field("Review (required)", "text", "textarea");
+    const label = makeElement("label", "", "Star rating (optional)");
+    const select = document.createElement("select");
+    [0, 5, 4, 3, 2, 1].forEach(value => {
+      const option = makeElement("option", "", value ? `${value} stars` : "No star rating");
+      option.value = String(value);
+      select.append(option);
+    });
+    select.value = String(item.rating || 0);
+    select.addEventListener("change", () => { item.rating = Number(select.value); updateTestimonialPreview(); });
+    label.append(select); row.append(label);
+    field("Review date (optional)", "date", "date");
+    field("Source, e.g. Google or Email (optional)", "source");
+    field("Original review link (optional)", "url", "url");
+    const actions = makeElement("div", "testimonial-actions");
+    [["Move up", -1], ["Move down", 1], ["Remove", 0]].forEach(([text, step]) => {
+      const button = makeElement("button", "secondary", text);
+      button.type = "button";
+      button.disabled = step !== 0 && (index + step < 0 || index + step >= content.testimonials.length);
+      button.addEventListener("click", () => {
+        if (!step) {
+          if (!confirm(`Remove ${item.name || "this testimonial"}? You can close without saving to discard this change.`)) return;
+          content.testimonials.splice(index, 1);
+        } else {
+          [content.testimonials[index], content.testimonials[index + step]] = [content.testimonials[index + step], item];
+        }
+        renderTestimonialFields(); updateTestimonialPreview();
+      });
+      actions.append(button);
+    });
+    row.append(actions); testimonialFields.append(row);
+  });
+};
+document.getElementById("add-testimonial").addEventListener("click", () => {
+  content.testimonials.unshift({ name: "", text: "", rating: 0, date: "", source: "", url: "" });
+  renderTestimonialFields();
+  const first = testimonialFields.firstElementChild;
+  first.open = true;
+  first.querySelector("input").focus();
+  updateTestimonialPreview();
+});
+
 const saveContent = async () => {
+  if ((content.testimonials || []).some(item => !item.name?.trim() || !item.text?.trim())) {
+    testimonialsDialog.showModal();
+    throw new Error("Add a name and review to each testimonial, or remove the unfinished entry.");
+  }
   const response = await fetch("/api/content", {
     method: "POST",
     headers: {
@@ -342,8 +579,12 @@ const loadContent = async () => {
   content.texts ||= {};
   content.images ||= {};
   content.gallery ||= [];
+  content.testimonials ||= [];
+  renderTestimonialFields();
   renderGalleryFields();
-  setStatus("Ready. Add, reorder, remove, then Save Draft and Publish Website.");
+  contentLoaded = true;
+  refreshPreview();
+  setStatus("Ready. Click outlined words or photos to edit your website.");
 };
 
 saveButton.addEventListener("click", async () => {
@@ -351,6 +592,7 @@ saveButton.addEventListener("click", async () => {
     saveButton.disabled = true;
     setStatus("Saving draft...");
     await saveContent();
+    dirty = false;
     setStatus("Draft saved. Click Publish Website when you are ready for it to go live.");
   } catch (error) {
     setStatus(error.message || "Save failed.");
@@ -365,6 +607,7 @@ publishButton.addEventListener("click", async () => {
     saveButton.disabled = true;
     setStatus("Saving draft before publishing...");
     await saveContent();
+    dirty = false;
 
     setStatus("Publishing to GitHub...");
     const response = await fetch("/api/publish", {

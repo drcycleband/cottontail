@@ -74,7 +74,7 @@ const initSite = () => {
     };
 
     const startAutoScroll = () => {
-      if (prefersReducedMotion || document.hidden) return;
+      if (prefersReducedMotion || document.hidden || new URLSearchParams(window.location.search).has("preview")) return;
 
       stopAutoScroll();
       autoScrollTimer = window.setInterval(() => showSlide(1), autoScrollDelay);

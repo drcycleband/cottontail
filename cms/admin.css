@@ -454,3 +454,47 @@ textarea:focus {
     font-size: 16px;
   }
 }
+
+/* The preview uses the real public page and its stylesheet, not a reproduction. */
+body { font-family: 'Nunito', Arial, sans-serif; }
+.admin-header, main { width: min(1600px, calc(100% - 32px)); }
+.website-panel { padding: 0; overflow: hidden; }
+.preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px 8px; }
+#preview-help { color: var(--muted); padding: 0 20px 16px; }
+#website-preview { display: block; width: 100%; height: 78vh; border: 0; background: white; }
+dialog { width: min(1100px, calc(100% - 24px)); max-height: 90vh; overflow: auto; border: 1px solid var(--border); border-radius: 16px; padding: 20px; color: var(--text); }
+dialog::backdrop { background: rgba(35,64,93,.55); }
+#close-gallery { display: block; margin: 0 0 16px auto; }
+@media (max-width: 720px) { .preview-heading { align-items: stretch; flex-direction: column; } }
+
+/* One page scroll; the preview's height is measured from its actual content. */
+html:has(#gallery-dialog[open]) { overflow: hidden; }
+#website-preview { height: 800px; }
+@media (max-width: 720px) {
+  .admin-header, main { width: calc(100% - 20px); }
+  .admin-header { display: grid; grid-template-columns: 1fr auto; gap: 12px; }
+  .admin-header > div { grid-column: 1 / -1; }
+  .admin-header h1 { font-size: 1.65rem; }
+  .admin-header .header-note { font-size: .9rem; line-height: 1.45; }
+  .admin-header > a, .admin-header form button { display: block; text-align: center; font-size: .9rem; }
+  .admin-header form { margin: 0; }
+  .status-panel { gap: 8px; padding: 10px; }
+  #status { font-size: .85rem; line-height: 1.3; }
+  .status-actions { width: 100%; }
+  .status-actions button { font-size: .9rem; padding: 10px 6px; }
+  .preview-heading { padding: 14px 12px 8px; }
+  #preview-help { padding: 0 12px 14px; font-size: .9rem; line-height: 1.45; }
+  #gallery-dialog { width: 100%; max-width: none; height: 100%; height: 100dvh; max-height: 100%; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; padding: 12px 12px max(12px, env(safe-area-inset-bottom)); overscroll-behavior: contain; }
+  #close-gallery { position: sticky; top: 0; z-index: 2; width: 100%; min-height: 48px; box-shadow: var(--shadow); }
+  #gallery-dialog .gallery-panel { padding: 12px; margin: 0; box-shadow: none; }
+  #gallery-dialog .gallery-preview { max-height: 220px; object-fit: contain; }
+}
+
+html:has(#testimonials-dialog[open]) { overflow: hidden; }
+#close-testimonials { display: block; margin-left: auto; }
+.testimonial-editor { margin-top: 16px; border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.testimonial-editor summary { cursor: pointer; font-weight: 800; padding: 8px 0; }
+.testimonial-editor label { display: block; margin-top: 14px; }
+.testimonial-editor input, .testimonial-editor textarea, .testimonial-editor select { display: block; width: 100%; margin-top: 6px; padding: 12px; border: 1px solid #b5c6d6; border-radius: 8px; font: inherit; box-sizing: border-box; }
+.testimonial-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+@media (max-width: 720px) { #testimonials-dialog { padding: 16px; } #close-testimonials { position: sticky; top: 0; z-index: 2; width: 100%; } }

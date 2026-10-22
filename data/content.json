@@ -182,5 +182,87 @@
       "alt": "Wide view of the bright Cottontail classroom and play area",
       "thumb": "images/admin-thumbs/gallery-processed-gallery-22-jpg.jpg"
     }
+  ],
+  "testimonials": [
+    {
+      "name": "Jennifer Borchers",
+      "date": "2024-10-05",
+      "text": "Kristel at Cottontail Childcare & Education provides outstanding care and education. Her approach is warm, professional, and personalized for each child. The small group size makes it a unique and engaging learning experience. I definitely recommend her services.",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUNudmJHak9nEAE!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgICnvbGjOg%7CCgsIwsbitwYQqJ74FA%7C?hl=en-US"
+    },
+    {
+      "name": "Becca Carder",
+      "date": "2025-07-13",
+      "text": "Cottontail Childcare & Education is absolutely fantastic! My daughter has been attending for an almost a month now, and I've seen such positive growth in her. The facility is always clean and welcoming, and the activities are engaging and age-appropriate. Miss Kristel is an exceptional teacher – she's patient, kind, and truly cares about each child's development. I appreciate the daily updates and photos that keep me connected throughout the day. Knowing Bentlee is in such a nurturing and educational environment gives me complete peace of mind. I highly recommend Cottontail to any parent looking for top-notch childcare!",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sCi9DQUlRQUNvZENodHljRjlvT214QlNIWkNWRVZTVjBORWMzVnZjSEoxY3pCblJIYxAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CAIQACodChtycF9oOmxBSHZCVEVSV0NEc3VvcHJ1czBnRHc%7C0cRy9fpFy5K%7C?hl=en"
+    },
+    {
+      "name": "Jordan Palmer",
+      "date": "2025-06-05",
+      "text": "⭐️⭐️⭐️⭐️⭐️ We absolutely love Cottontail Childcare & Education! My 2.5-year-old son started going at the end of April, and I can’t say enough good things about our experience. Kristel has created such a warm, welcoming, and thoughtfully designed space for little ones. Her home and play areas are beautiful, and there’s a perfect mix of learning activities and free play—which my son thrives on! As someone with a background in psychology/social work and experience working with CPS, I’m very particular about who I trust with my child. I felt completely at ease with Kristel from the very beginning. She’s kind, attentive, and you can tell she genuinely loves what she does. My son has already learned so much, and he looks forward to going every day. It brings me so much peace knowing he’s in such good hands. If you’re looking for childcare or a preschool in the Springboro area, I can’t recommend Cottontail enough!",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VQYnM1UERJOTZfWG53RRAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEPbs5PDI96_XnwE%7CCgwIouH9wQYQoPvN4QI%7C?hl=en"
+    },
+    {
+      "name": "Lindsay Riddle-Whitt",
+      "date": "2025-02-16",
+      "text": "Cotton Tail Education has been an absolute blessing for our family! From the moment we walked in, we could tell this was a warm, loving, and enriching environment for children. Mrs. Kristel is an incredible teacher and caregiver—her passion for early childhood education shines through in everything she does. Since our daughter started here, we’ve been amazed at how much she has learned and grown. Every day, she comes home excited to share new things, whether it’s letters, numbers, or the fun activities they do. Beyond academics, we can tell she truly feels loved and nurtured, which gives us so much peace of mind. The space itself is immaculate, incredibly well-organized, and thoughtfully designed for little learners. There’s plenty of room for play, exploration, and hands-on learning, making it the perfect environment for children to thrive. It’s clear that Mrs. Kristel puts her heart into every detail, and we are beyond grateful to have found this gem. If you’re looking for a safe, loving, and highly educational place for your child, Cotton Tail Education is the best choice. We cannot recommend Mrs. Kristel enough!",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnTUNneXUzd1VREAE!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgMCgyu3wUQ%7CCgsI1NjEvQYQoKKmcA%7C?hl=en-US"
+    },
+    {
+      "name": "Kyle Whitt",
+      "date": "2024-12-04",
+      "text": "I couldn’t be more impressed with Kristal and Cottontail Childcare & Education. Her home is immaculate; clean and safe with ample room for the kids to play and learn. Kristal is extremely kind and easy to work with. Her prices are better than any other daycare around. She runs the Daycare through the Lillio app and she sends photos and updates to you throughout the day which is really cool. Kristal has been and Godsend for our family and our 2-year-old daughter adores her. You won’t find better childcare than this, Kristal is the best.",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSUQzbUx2WE5BEAE!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgID3mLvXNA%7CCgwI8p3KuQYQsIGyogE%7C?hl=en-US"
+    },
+    {
+      "name": "Destiny Mann",
+      "date": "2024-11-04",
+      "text": "Kristel is amazing with my two boys. They love everyday they go to her and always want to go back. She provides a warm nurturing environment for them to learn and grow. She teaches them so much everyday. I will always recommend her to anyone that needs a sitter for toddlers.",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSUMzdUtxYy1nRRAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgIC3uKqc-gE%7CCgwIpKmZuQYQqOTW1wI%7C?hl=en-US"
+    },
+    {
+      "name": "Mayra Vazquez",
+      "date": "2024-11-04",
+      "text": "The atmosphere at Cottontail is both welcoming and inspiring. Kristel fosters an environment where learning is encouraged in a playful, and enjoyable way. A perfect place for growth and development.",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURub2RLNG13RRAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgIDnodK4mwE%7CCgwIjoGLuAYQsKHFowI%7C?hl=en-US"
+    },
+    {
+      "name": "Richard Coning",
+      "date": "2024-10-05",
+      "text": "Kristel is fantastic! She provideds one on one care and education. Highly reccomend for anyone seeking high quality personalized childcare.",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChZDSUhNMG9nS0VJQ0FnSURIOWZYaWN3EAE!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgIDH9fXicw%7CCgsI4qqstwYQ0OX4Bg%7C?hl=en"
+    },
+    {
+      "name": "Robyn",
+      "date": "2024-10-05",
+      "text": "I highly recommend Cottontail Childcare & Education! I've known Kristel for years & she is great with children. She is very professional, as well as safe, clean, & organized. She will keep your child active & engaged in learning, and they will have a fun & happy time!",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURIallHMXF3RRAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgIDHjYG1qwE%7CCgsIndGstwYQoL3wfg%7C?hl=en"
+    },
+    {
+      "name": "Sarah Miller",
+      "date": "2024-10-05",
+      "text": "Kristel, the owner of Cottontail Childcare & Education. Is simply amazing with kids! She creates a fun , exciting, and clean environment where children thrive. Her passion for teaching and making a positive difference in children's lives truly shines through in every aspect of her care. I highly recommend Kristel!",
+      "rating": 5,
+      "source": "Google",
+      "url": "https://www.google.com/maps/reviews/data=!4m8!14m7!1m6!2m5!1sChdDSUhNMG9nS0VJQ0FnSURIaTR2eV9BRRAB!2m1!1s0x0:0x49536be0aa159a10!3m1!1s2@1:CIHM0ogKEICAgIDHi4vy_AE%7CCgwI8M6ytwYQkJ7rrwI%7C?hl=en-US"
+    }
   ]
 }
